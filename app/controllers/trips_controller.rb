@@ -1,5 +1,6 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!
 
   # GET /trips
   # GET /trips.json
@@ -25,6 +26,7 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
+    @trip.owner = current_user
 
     respond_to do |format|
       if @trip.save
@@ -65,6 +67,7 @@ class TripsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_trip
       @trip = Trip.find(params[:id])
+      @current_user = current_user
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
