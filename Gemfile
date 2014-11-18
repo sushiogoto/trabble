@@ -31,8 +31,10 @@ gem 'jbuilder', '~> 2.0'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-# gem devise for login system
+# Use Devise for login system
 gem 'devise'
+# Use Deviseinvitable to send invitations by email
+gem 'devise_invitable', '~> 1.3.4'
 
 group :development do
   # Spring speeds up development by keeping your application running in the background.
