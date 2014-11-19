@@ -27,6 +27,7 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.owner = current_user
+    User.invite!({:email => "new_user@example.com"}, current_user)
 
     respond_to do |format|
       if @trip.save
