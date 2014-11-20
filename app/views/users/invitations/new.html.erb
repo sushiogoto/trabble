@@ -8,5 +8,7 @@
   <%= f.text_field field %></p>
 <% end -%>
 
+<%= f.hidden_field :trip_id, :value => params[:trip_id] %>
+
   <p><%= f.submit t("devise.invitations.new.submit_button") %></p>
 <% end %>

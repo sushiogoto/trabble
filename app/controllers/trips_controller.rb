@@ -30,6 +30,7 @@ class TripsController < ApplicationController
 
     respond_to do |format|
       if @trip.save
+        current_user.trip_users.create(user_id: current_user, trip_id: @trip.id)
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
         format.json { render :show, status: :created, location: @trip }
       else
