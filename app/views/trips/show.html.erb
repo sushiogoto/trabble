@@ -19,9 +19,7 @@
           <h3><%= @trip.votes_for.count %></h3>
 
           <h2>Voted on by:</h2>
-          <% @trip.votes_for.up.by_type(User).voters.each do |user| %>
-            <%= user.email %>,
-          <% end %>
+          <h3><%= @trip.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></h3>
           <br />
 
 
