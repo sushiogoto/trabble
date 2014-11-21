@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :trips
 
   get 'welcome/index'
 
@@ -12,6 +11,12 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'trips#index'
+
+  resources :trips do
+    member do
+      put "like", to: "trips#upvote"
+    end
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
