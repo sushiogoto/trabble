@@ -5,7 +5,7 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
+    @trips = current_user.trips
   end
 
   # GET /trips/1
@@ -67,6 +67,15 @@ class TripsController < ApplicationController
   def upvote
     @trip = Trip.find(params[:id])
     @trip.liked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @trip.liked_count } }
+    end
+  end
+
+  def downvote
+    @trip = Trip.find(params[:id])
+    @trip.disliked_by current_user
     respond_to do |format|
       format.html {redirect_to :back }
       format.json { render json: { count: @trip.liked_count } }
