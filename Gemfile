@@ -63,6 +63,8 @@ group :development do
   # Rails console opens pry
   #> https://github.com/rweng/pry-rails
   gem 'pry-rails'
+
+
 end
 
 group :development, :test do
