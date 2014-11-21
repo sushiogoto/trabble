@@ -68,6 +68,7 @@ end
 group :development, :test do
   gem 'rspec-rails', '~> 3.0.0'
   gem 'capybara', '~> 2.3.0'
+  gem 'letter_opener'
 end
 
 group :production do
