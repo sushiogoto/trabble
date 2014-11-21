@@ -15,6 +15,7 @@ class Users::InvitationsController < Devise::InvitationsController
   # POST /resource/invitation
   def create
     @user_trip = Trip.find(params[:user][:trip_id])
+    @trip_location = @user_trip.location
     self.resource = invite_resource
     self.resource.trips << @user_trip
     resource_invited = resource.errors.empty?
