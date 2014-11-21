@@ -16,15 +16,18 @@
           <h3><%= @trip.end_date %></h3>
 
           <h2>Upvote count:</h2>
-          <h3><%= @trip.votes_for.count %></h3>
+          <h3><%= @trip.votes_for.up.count %></h3>
 
           <h2>Voted on by:</h2>
           <h3><%= @trip.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></h3>
           <br />
 
 
-
-  <%= link_to "Upvote Trip", like_trip_path(@trip), method: :put, class: "button tiny" %> |
+  <% if current_user.voted_up_for? @trip %>
+      <%= link_to "Rescind Upvote", dislike_trip_path(@trip), method: :put, class: "button tiny" %> |
+  <% else %>
+      <%= link_to "Upvote Trip", like_trip_path(@trip), method: :put, class: "button tiny" %> |
+  <% end %>
 
   <%= link_to 'Invite participants', new_user_invitation_path(trip_id: @trip.id) %> |
 

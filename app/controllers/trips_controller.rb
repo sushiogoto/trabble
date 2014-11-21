@@ -73,6 +73,15 @@ class TripsController < ApplicationController
     end
   end
 
+  def downvote
+    @trip = Trip.find(params[:id])
+    @trip.disliked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @trip.liked_count } }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_trip
