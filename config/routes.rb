@@ -19,6 +19,13 @@ Rails.application.routes.draw do
     end
   end
 
+  scope :api do
+    resources :trips, only: [:index, :show, :create] do
+      post  'submit'  , on: :collection
+      get   'data'    , on: :collection
+    end
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
