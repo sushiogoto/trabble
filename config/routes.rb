@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'welcome/index'
+  get 'trips' => 'trips#index'
 
   devise_for :users, controllers: { invitations: 'users/invitations',
                                     sessions: 'users/sessions',
