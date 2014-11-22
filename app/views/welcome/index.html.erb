@@ -1,13 +1,12 @@
-<h1>Welcome#index</h1>
-<p>Find me in app/views/welcome/index.html.erb</p>
+<div class="bannertron">
+  <div class="container">
+    <h1>Plan a group trip.</h1>
+    <p>Coordinate effortlessly with your friends and family.</p>
+    <% if user_signed_in? %>
+      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "mynav btn" %>
+    <% else %>
+      <%= link_to 'Login', new_user_session_path, class: "mynav"  %>
+    <% end %>
+  </div>
+</div>
 
-
-<% if user_signed_in? %>
-  <li>
-  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>
-  </li>
-<% else %>
-  <li>
-  <%= link_to('Login', new_user_session_path)  %>
-  </li>
-<% end %>

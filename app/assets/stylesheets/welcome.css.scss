@@ -2,6 +2,63 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.bannertron {
+  background-image:image-url('matterhorn.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.bannertron .container {
+  position: relative;
+  top:100px;
+}
+
+.bannertron h1 {
+  color: #fff;
+  font-size: 48px;
+  font-family: 'Shift', sans-serif;
+  font-weight: bold;
+  text-align: left;
+}
+
+.bannertron p {
+  font-size: 20px;
+  color: #fff;
+}
+
+.mynav {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.42857143;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-image: none;
+  border: 1px solid;
+  border-radius: 4px;
+}
+
+.mynav:visited {
+  color: #666;
+}
+a {
+  text-decoration: none !important;
+}
 $nav-top: 50px;
 
 body {
