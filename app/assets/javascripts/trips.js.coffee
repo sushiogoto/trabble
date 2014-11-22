@@ -7,3 +7,21 @@ $('.vote')
   .on('ajax:complete', -> $(this).removeClass('loading'))
   .on('ajax:error', -> $(this).after('<div class="error">There was an issue.</div>'))
   .on('ajax:success', (data) -> $(this).html(data.count))
+
+
+App = angular.module("myApp", [])
+
+App.controller("TripCtrl", ["$scope", "$http", "$timeout", ($scope, $http, $timeout) ->
+  $scope.trips = []
+  $scope.lunchCount = 0
+
+  $scope.increment = ->
+    $scope.lunchCount++
+
+  $scope.updateTripsFromServer = ->
+    $http.get('/api/trips/data.json')
+      .success (data) ->
+        $scope.trips = data.trips
+
+  $scope.updateTripsFromServer()
+])

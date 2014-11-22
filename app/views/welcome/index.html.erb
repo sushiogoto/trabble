@@ -3,7 +3,7 @@
     <h1>Plan a group trip.</h1>
     <p>Coordinate effortlessly with your friends and family.</p>
     <% if user_signed_in? %>
-      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "mynav btn" %>
+      <%= link_to 'Logout', destroy_user_session_path, :method => :delete, class: "mynav" %>
     <% else %>
       <%= link_to 'Login', new_user_session_path, class: "mynav"  %>
     <% end %>

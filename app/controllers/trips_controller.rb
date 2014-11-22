@@ -2,6 +2,14 @@ class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
 
+  def data
+    user_trips = Trip.where user: current_user
+    trip_locations = user_trips.pluck(:location)
+    # lunch_dates = user_lunches.pluck(:lunch_date)
+    raise
+    render json: {trips: trip_locations}
+  end
+
   # GET /trips
   # GET /trips.json
   def index
