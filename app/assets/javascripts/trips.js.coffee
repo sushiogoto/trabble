@@ -19,9 +19,9 @@ App.controller("TripCtrl", ["$scope", "$http", "$timeout", ($scope, $http, $time
     $scope.lunchCount++
 
   $scope.updateTripsFromServer = ->
-    $http.get('/api/trips/data.json')
+    $http.get('/api/trips.json')
       .success (data) ->
-        $scope.trips = data.trips
+        $scope.trips = data
 
   $scope.updateTripsFromServer()
 ])
