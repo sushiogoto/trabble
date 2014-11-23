@@ -1,9 +1,12 @@
-<div class="trips" ng-controller="TripCtrl">
+<div class="trips" ng-controller="TripCtrl as trip">
 <h2>You have taken {{ lunchCount }} times of PepperLunch</h2>
   <div class="btn btn-success" ng-click="increment()">+1</div>
   <h1 class="text-center">Your Trips</h1>
+
+  {{ trip.trips }}
+
   <div class="row trips" ng-repeat="trip in trips">
-    <div class="col-md-3">{{ $index }}</div>
+    <div class="col-md-3">{{ trip.location }}</div>
   </div>
 </div>
 
