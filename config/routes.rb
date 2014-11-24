@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  get 'welcome/index'
+  get 'trips' => 'trips#index'
 
   devise_for :users, controllers: { invitations: 'users/invitations',
                                     sessions: 'users/sessions',
@@ -10,12 +10,19 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'trips#index'
+  root 'welcome#index'
 
   resources :trips do
     member do
       put "like", to: "trips#upvote"
       put "dislike", to: "trips#downvote"
+    end
+  end
+
+  scope :api do
+    resources :trips, only: [:index, :show, :create] do
+      post  'submit'  , on: :collection
+      get   'data'    , on: :collection
     end
   end
 

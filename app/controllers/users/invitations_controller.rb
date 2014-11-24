@@ -15,9 +15,9 @@ class Users::InvitationsController < Devise::InvitationsController
   # POST /resource/invitation
   def create
     @user_trip = Trip.find(params[:user][:trip_id])
-    @trip_location = @user_trip.location
-    self.resource = invite_resource
-    self.resource.trips << @user_trip
+    self.resource = invite_resource do |user|
+      user.trips << @user_trip
+    end
     resource_invited = resource.errors.empty?
 
     yield resource if block_given?
@@ -99,5 +99,4 @@ class Users::InvitationsController < Devise::InvitationsController
   def update_resource_params
     devise_parameter_sanitizer.sanitize(:accept_invitation)
   end
-
 end
