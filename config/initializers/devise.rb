@@ -30,7 +30,7 @@
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
   # config.authentication_keys = [ :email ]
-  
+
   config.secret_key = '2c4809f084624dc16b21b0f80d55e9205053ad3c41137a9b5f622ca1f7acbfa2bf3a8512bbce23cbb46fffaa3d5cc402fdd5b53b1e0445565dfee59a98e82150'
 
   # Configure parameters from the request object used for authentication. Each entry
@@ -274,7 +274,8 @@
   # Add a new OmniAuth provider. Check the wiki for more information on setting
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
-  
+  config.omniauth :facebook, '300753676789147', 'b1ff4949bb06ef9c9cf694a5ed5c5c6f'
+
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or
   # change the failure app, you can configure them inside the config.warden block.
