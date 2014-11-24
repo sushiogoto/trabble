@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :locations
   get 'trips' => 'trips#index'
 
   devise_for :users, controllers: { invitations: 'users/invitations',
@@ -14,7 +15,6 @@ Rails.application.routes.draw do
 
   resources :trips do
     member do
-      get 'locations'
       put "like", to: "trips#upvote"
       put "dislike", to: "trips#downvote"
     end

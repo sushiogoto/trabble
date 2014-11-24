@@ -10,7 +10,14 @@
       </ul>
     </div>
   <% end %>
-
+  <%= f.fields_for :locations do |location| -%><br />
+    <div class="locations">
+      <%= location.label :name, "Location Name" %><br />
+      <%= location.text_field :name %>
+      <%= location.hidden_field :_destroy %>
+      <%= link_to 'remove', '#', class: 'remove_fields' %>
+    </div>
+  <% end %>
 
 
   <div class="actions">
