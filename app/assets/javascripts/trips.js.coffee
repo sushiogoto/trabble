@@ -7,6 +7,12 @@ $ ->
     $(this).closest('.locations').hide()
     event.preventDefault()
 
+  $('form').on 'click', '.add_fields', (event) ->
+    time = new Date().getTime()
+    regexp = new RegExp($(this).data('id'), 'g')
+    $(this).before($(this).data('fields').replace(regexp, time))
+    event.preventDefault()
+
 $('.vote')
   .on('ajax:send', -> $(this).addClass('loading'))
   .on('ajax:complete', -> $(this).removeClass('loading'))
