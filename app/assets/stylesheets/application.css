@@ -43,15 +43,15 @@ html {
 
 
 body {
-padding-top: 60px;
+  padding-top: 60px;
 }
 
 section {
-overflow: auto;
+  overflow: auto;
 }
 
 textarea {
-resize: vertical;
+  resize: vertical;
 }
 
 .center {
@@ -221,14 +221,20 @@ div.header-image {
    position: absolute;
  }
 
-.header-title {
+.header {
   z-index: 50;
-  padding: 100px;
   position: relative;
-  font-size: 5em;
   letter-spacing: -2px;
-  margin-bottom: 30px;
   text-align: center;
   color: white;
+}
 
+.title {
+  margin-bottom: 30px;
+  padding-top: 55px;
+  font-size: 6em;
+  text-shadow: black 2px 2px;
+}
+.subtitle {
+  font-size: 3em;
 }
