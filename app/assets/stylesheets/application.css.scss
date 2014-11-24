@@ -18,7 +18,7 @@ $light-gray: #777;
 $gray-medium-light: #eaeaea;
 $gray: #555;
 $gray-darker: #222;
-$state-danger-text: #FF0000; 
+$state-danger-text: #FF0000;
 
 @mixin box_sizing {
   -moz-box-sizing: border-box;
@@ -57,7 +57,7 @@ textarea {
 }
 
 .center {
-text-align: center;
+  text-align: center;
   h1 {
   margin-bottom: 10px;
   }
