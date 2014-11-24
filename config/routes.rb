@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :trips do
     member do
+      get 'locations'
       put "like", to: "trips#upvote"
       put "dislike", to: "trips#downvote"
     end
