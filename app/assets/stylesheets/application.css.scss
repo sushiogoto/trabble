@@ -18,35 +18,24 @@ $light-gray: #777;
 $gray-medium-light: #eaeaea;
 $gray: #555;
 $gray-darker: #222;
-$state-danger-text: #FF0000; 
-
-@mixin box_sizing {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
+$state-danger-text: #FF0000;
 
 /* universal */
 
-html {
-  background-image:image-url('matterhorn.jpg');
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  overflow-y: scroll;
-  background-repeat: no-repeat;
-  background-size: cover;
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-
-
-body {
-  padding-top: 60px;
-}
+// body {
+//   background-image:image-url('matterhorn.jpg');
+//   -webkit-background-size: cover;
+//   -moz-background-size: cover;
+//   -o-background-size: cover;
+//   background-size: cover;
+//   overflow-y: scroll;
+//   background-repeat: no-repeat;
+//   background-size: cover;
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   padding-top: 60px;
+// }
 
 section {
   overflow: auto;
@@ -74,6 +63,7 @@ h1 {
   letter-spacing: -2px;
   margin-bottom: 30px;
   text-align: center;
+  color: white;
 }
 
 h2 {
@@ -82,7 +72,7 @@ h2 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $light-gray;
+  color: white;
 }
 
 h3 {
@@ -91,7 +81,7 @@ h3 {
   margin-bottom: 30px;
   text-align: center;
   font-weight: normal;
-  color: $light-gray;
+  color: white;
 }
 p {
   font-size: 1.1em;
