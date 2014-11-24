@@ -19,7 +19,6 @@ class TripsController < ApplicationController
   # GET /trips/1
   # GET /trips/1.json
   def show
-    @location = Location.new
     @locations = @trip.locations
   end
 
@@ -89,6 +88,24 @@ class TripsController < ApplicationController
     respond_to do |format|
       format.html {redirect_to :back }
       format.json { render json: { count: @trip.liked_count } }
+    end
+  end
+
+  def upvote_location
+    @location = Location.find(params[:id])
+    @location.liked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @location.liked_count } }
+    end
+  end
+
+  def downvote_location
+    @location = Location.find(params[:id])
+    @location.disliked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @location.liked_count } }
     end
   end
 
