@@ -4,11 +4,10 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <li class="user_profile">
-                <a href="#">
-                    Start Bootstrap
-                </a>
-            </li>
+            <div class="user_profile">
+              <%= image_tag current_user.largeimage %><br />
+              <%= current_user.name %>
+            </div>
             <li>
                 <a href="#">Dashboard</a>
             </li>
