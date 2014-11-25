@@ -41,6 +41,8 @@ gem 'acts_as_votable', '~> 0.10.0'
 
 gem 'omniauth-facebook', '1.4.0'
 
+gem 'angular-rails-templates'
+
 group :development do
   # Spring speeds up development by keeping your application running in the background.
   #> https://github.com/rails/spring

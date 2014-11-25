@@ -20,12 +20,11 @@ $('.vote')
   .on('ajax:success', (data) -> $(this).html(data.count))
 
 
-App = angular.module("myApp", [])
+@app = angular.module("myApp", ['templates', 'ngRoute'])
 
-App.controller("TripCtrl", ["$scope", "$http", "$timeout", ($scope, $http, $timeout) ->
+@app.controller("TripCtrl", ["$scope", "$http", "$timeout", ($scope, $http, $timeout) ->
   $scope.trips = []
   $scope.lunchCount = 0
-
   $scope.increment = ->
     $scope.lunchCount++
 
@@ -35,4 +34,14 @@ App.controller("TripCtrl", ["$scope", "$http", "$timeout", ($scope, $http, $time
         $scope.trips = data
 
   $scope.updateTripsFromServer()
+])
+
+@app.config(['$routeProvider', ($routeProvider) ->
+  $routeProvider.
+    otherwise({
+      templateUrl: '../templates/home.html',
+      controller: 'HomeCtrl'
+    })
+
+  alert "HI"
 ])
