@@ -9,6 +9,10 @@
       </div>
       <div class="sidebar-nav trips_list">
         <p>Your Trips</p>
+        <div class="row trips" ng-repeat="trip in trips">
+          <a ng-href="/trips/{{ trip.id }}" class="col-md-3">{{ trip.name }} </a>
+        </div>
+        <%= link_to 'New Trip', new_trip_path %>
       </div>
     </div>
     <!-- /#sidebar-wrapper -->
@@ -18,9 +22,6 @@
   <div class="btn btn-success" ng-click="increment()">+1</div>
   <h1 class="text-center">Your Trips</h1>
 
-  <div class="row trips" ng-repeat="trip in trips">
-    <div class="col-md-3">{{ trip.name }}</div>
-  </div>
 </div>
 
 <%= link_to 'New Trip', new_trip_path %>

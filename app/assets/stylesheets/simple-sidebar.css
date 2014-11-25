@@ -66,18 +66,23 @@
 }
 
 .user_profile {
-    height: 275px;
+    height: 250px;
     font-size: 18px;
     line-height: 60px;
-    text-align: center !important;
+    text-align: center;
 }
 .user_profile > img {
-      border-radius: 150px !important;
-      -webkit-border-radius: 150px;
-      -moz-border-radius: 150px;
-      margin-top: 20px;
-      margin-right: 10px;
-      margin-left: 10px;
+    height: 60%;
+    border-radius: 150px;
+    -webkit-border-radius: 150px;
+    -moz-border-radius: 150px;
+    margin-top: 20px;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.trips_list {
+    margin-left: 30px;
 }
 
 .sidebar-nav > .user_profile a {
