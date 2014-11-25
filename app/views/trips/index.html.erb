@@ -1,47 +1,25 @@
 <div class="trips" ng-controller="TripCtrl as trip">
-  <div id="wrapper">
 
+  <div id="wrapper">
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <li class="user_profile">
-                <a href="#">
-                    Start Bootstrap
-                </a>
-            </li>
-            <li>
-                <a href="#">Dashboard</a>
-            </li>
-            <li>
-                <a href="#">Shortcuts</a>
-            </li>
-            <li>
-                <a href="#">Overview</a>
-            </li>
-            <li>
-                <a href="#">Events</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
-        </ul>
+      <div class="sidebar-nav user_profile">
+        <%= image_tag current_user.largeimage %><br />
+        <%= current_user.name %>
+      </div>
+      <div class="sidebar-nav trips_list">
+        <p>Your Trips</p>
+        <div class="row trips" ng-repeat="trip in trips">
+          <a ng-href="/trips/{{ trip.id }}" class="col-md-3">{{ trip.name }} </a>
+        </div>
+        <%= link_to 'New Trip', new_trip_path %>
+      </div>
     </div>
     <!-- /#sidebar-wrapper -->
 
     <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-<h2>You have taken {{ lunchCount }} times of PepperLunch</h2>
-  <div class="btn btn-success" ng-click="increment()">+1</div>
+
   <h1 class="text-center">Your Trips</h1>
 
-  <div class="row trips" ng-repeat="trip in trips">
-    <div class="col-md-3">{{ trip.name }}</div>
-  </div>
 </div>
 
-<%= link_to 'New Trip', new_trip_path %>

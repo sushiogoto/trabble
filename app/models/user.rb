@@ -18,6 +18,14 @@ class User < ActiveRecord::Base
      end
    end
 
+  def largeimage
+    "http://graph.facebook.com/#{self.uid}/picture?type=large"
+  end
+
+  def normalimage
+    "http://graph.facebook.com/#{self.uid}/picture?"
+  end
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
