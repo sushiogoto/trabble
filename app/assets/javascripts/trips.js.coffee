@@ -22,26 +22,32 @@ $('.vote')
 
 @app = angular.module("myApp", ['templates', 'ngRoute'])
 
-@app.controller("TripCtrl", ["$scope", "$http", "$timeout", ($scope, $http, $timeout) ->
+@app.controller("TripCtrl", ["$scope", "$http", "$timeout", "$location", ($scope, $http, $timeout, $location) ->
   $scope.trips = []
-  $scope.lunchCount = 0
-  $scope.increment = ->
-    $scope.lunchCount++
 
-  $scope.updateTripsFromServer = ->
-    $http.get('/api/trips.json')
-      .success (data) ->
-        $scope.trips = data
+  $http.get('/api/trips.json')
+    .success (data) ->
+      $scope.trips = data
 
-  $scope.updateTripsFromServer()
+  $scope.viewTrip = (id) ->
+      $location.url "/trips/#{id}"
+
 ])
+
+@app.controller 'TripShowCtrl', ['$scope', '$http', '$routeParams', ($scope, $http, $routeParams) ->
+  $http.get("/api/trips/#{$routeParams.id}.json").success((data) ->
+    $scope.trip = data
+  )
+]
 
 @app.config(['$routeProvider', ($routeProvider) ->
   $routeProvider.
+    when('/trips/:id', {
+      templateUrl: '../templates/trips/show.html',
+      controller: 'TripShowCtrl'
+    }).
     otherwise({
-      templateUrl: '../templates/home.html',
-      controller: 'HomeCtrl'
+      templateUrl: '../templates/trips.html',
+      controller: 'TripCtrl'
     })
-
-  alert "HI"
 ])
