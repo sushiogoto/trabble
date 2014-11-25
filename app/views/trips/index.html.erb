@@ -5,32 +5,13 @@
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
-            <li class="user_profile">
-                <a href="#">
-                    Start Bootstrap
-                </a>
-            </li>
-            <li>
+            <div class="user_profile">
+              <%= image_tag current_user.largeimage %><br />
+              <%= current_user.name %>
+            </div>
+            <div class="trips_list">
                 <a href="#">Dashboard</a>
-            </li>
-            <li>
-                <a href="#">Shortcuts</a>
-            </li>
-            <li>
-                <a href="#">Overview</a>
-            </li>
-            <li>
-                <a href="#">Events</a>
-            </li>
-            <li>
-                <a href="#">About</a>
-            </li>
-            <li>
-                <a href="#">Services</a>
-            </li>
-            <li>
-                <a href="#">Contact</a>
-            </li>
+            </div>
         </ul>
     </div>
     <!-- /#sidebar-wrapper -->
