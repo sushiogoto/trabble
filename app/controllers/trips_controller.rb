@@ -5,6 +5,8 @@ class TripsController < ApplicationController
   def data
     user_trips = Trip.where user: current_user
     trip_locations = user_trips.pluck(:location)
+    trip_transportations = user_trips.pluck(:transportation)
+
     # lunch_dates = user_lunches.pluck(:lunch_date)
     raise
     render json: {trips: trip_locations}
@@ -20,7 +22,9 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @locations = @trip.locations
+    @transportations = @trip.transportations
   end
+
 
   # GET /trips/new
   def new
@@ -41,7 +45,7 @@ class TripsController < ApplicationController
       if @trip.save
         current_user.trip_users.create(user_id: current_user, trip_id: @trip.id)
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render :show, status: :created, location: @trip }
+        format.json { render :show, status: :created, location: @trip, transportation: @trip }
       else
         format.html { render :new }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
@@ -55,7 +59,7 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.update(trip_params)
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trip }
+        format.json { render :show, status: :ok, location: @trip, transportation: @trip }
       else
         format.html { render :edit }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
@@ -106,6 +110,24 @@ class TripsController < ApplicationController
     respond_to do |format|
       format.html {redirect_to :back }
       format.json { render json: { count: @location.liked_count } }
+    end
+  end
+
+  def upvote_transportation
+    @transportation = Transportation.find(params[:id])
+    @transportation.liked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @transportation.liked_count } }
+    end
+  end
+
+  def downvote_transportation
+    @transportation = Transportation.find(params[:id])
+    @transportation.disliked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @transportation.liked_count } }
     end
   end
 
