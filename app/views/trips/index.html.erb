@@ -1,4 +1,5 @@
 <div class="trips" ng-controller="TripCtrl as trip">
+
   <div id="wrapper">
 
     <!-- Sidebar -->
@@ -35,13 +36,12 @@
     <!-- /#sidebar-wrapper -->
 
     <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-<h2>You have taken {{ lunchCount }} times of PepperLunch</h2>
-  <div class="btn btn-success" ng-click="increment()">+1</div>
+
   <h1 class="text-center">Your Trips</h1>
 
   <div class="row trips" ng-repeat="trip in trips">
-    <div class="col-md-3">{{ trip.name }}</div>
+    <a ng-href="/trips/{{ trip.id }}" class="col-md-3">{{ trip.name }} </a>
   </div>
+  <%= link_to 'New Trip', new_trip_path %>
 </div>
 
-<%= link_to 'New Trip', new_trip_path %>

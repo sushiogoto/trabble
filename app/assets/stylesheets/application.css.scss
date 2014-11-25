@@ -15,23 +15,20 @@
  */
 
 
-
-/* universal */
-
-// body {
-//   background-image:image-url('matterhorn.jpg');
-//   -webkit-background-size: cover;
-//   -moz-background-size: cover;
-//   -o-background-size: cover;
-//   background-size: cover;
-//   overflow-y: scroll;
-//   background-repeat: no-repeat;
-//   background-size: cover;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   padding-top: 60px;
-// }
+body {
+  background-image:image-url('matterhorn.jpg');
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  overflow-y: scroll;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-top: 60px;
+}
 
 section {
   overflow: auto;
