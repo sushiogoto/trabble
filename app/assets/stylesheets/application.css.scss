@@ -22,7 +22,6 @@ body {
   -o-background-size: cover;
   background-size: cover;
   overflow-y: scroll;
-  background-repeat: no-repeat;
   background-size: cover;
   position: fixed;
   top: 0;
@@ -36,6 +35,10 @@ section {
 
 textarea {
   resize: vertical;
+}
+
+.trips {
+  color: white !important;
 }
 
 .center {

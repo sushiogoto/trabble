@@ -4,6 +4,8 @@
 
 .user_profile {
   text-align: center;
+  width: 100%;
+  position: relative;
 }
 
 .user_profile > img {
@@ -13,6 +15,8 @@
   -webkit-border-radius: 150px;
   -moz-border-radius: 150px;
   margin-top: 20px;
-  margin-right: 10px;
-  margin-left: 10px;
+}
+
+.trips_list {
+  position: relative;
 }

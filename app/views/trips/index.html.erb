@@ -1,7 +1,6 @@
 <div class="trips" ng-controller="TripCtrl as trip">
 
   <div id="wrapper">
-
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
         <ul class="sidebar-nav">
@@ -24,5 +23,6 @@
     <a ng-href="/trips/{{ trip.id }}" class="col-md-3">{{ trip.name }} </a>
   </div>
   <%= link_to 'New Trip', new_trip_path %>
+  </div>
 </div>
 
