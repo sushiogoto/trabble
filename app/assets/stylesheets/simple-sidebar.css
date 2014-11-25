@@ -43,15 +43,6 @@
 
 /* Sidebar Styles */
 
-.sidebar-nav {
-    position: absolute;
-    top: 0;
-    width: 250px;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
 .sidebar-nav li {
     text-indent: 20px;
     line-height: 40px;
@@ -74,10 +65,19 @@
     text-decoration: none;
 }
 
-.sidebar-nav > .user_profile {
-    height: 65px;
+.user_profile {
+    height: 275px;
     font-size: 18px;
     line-height: 60px;
+    text-align: center !important;
+}
+.user_profile > img {
+      border-radius: 150px !important;
+      -webkit-border-radius: 150px;
+      -moz-border-radius: 150px;
+      margin-top: 20px;
+      margin-right: 10px;
+      margin-left: 10px;
 }
 
 .sidebar-nav > .user_profile a {

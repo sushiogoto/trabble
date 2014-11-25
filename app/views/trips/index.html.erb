@@ -3,15 +3,13 @@
 
     <!-- Sidebar -->
     <div id="sidebar-wrapper">
-        <ul class="sidebar-nav">
-            <div class="user_profile">
-              <%= image_tag current_user.largeimage %><br />
-              <%= current_user.name %>
-            </div>
-            <div class="trips_list">
-                <a href="#">Dashboard</a>
-            </div>
-        </ul>
+      <div class="sidebar-nav user_profile">
+        <%= image_tag current_user.largeimage %><br />
+        <%= current_user.name %>
+      </div>
+      <div class="sidebar-nav trips_list">
+        <p>Your Trips</p>
+      </div>
     </div>
     <!-- /#sidebar-wrapper -->
 
