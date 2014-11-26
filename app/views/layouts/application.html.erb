@@ -41,9 +41,30 @@
 </div>
 <!-- /#wrapper -->
 
-  <div class="container">
-    <%= yield %>
-  </div>
+<div class="container">
+  <% if user_signed_in? %>
+    <div class="trips" ng-controller="TripCtrl as trip">
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <div class="sidebar-nav user_profile">
+          <%= image_tag current_user.largeimage %><br />
+          <%= current_user.name %>
+        </div>
+        <div class="sidebar-nav trips_list">
+          <p>Your Trips</p>
+          <div class="row trips" ng-repeat="trip in trips">
+            <a ng-href="/trips/{{ trip.id }}" class="col-md-3">{{ trip.name }} </a>
+          </div>
+          <%= link_to 'New Trip', new_trip_path %>
+        </div>
+      </div>
+      <!-- /#sidebar-wrapper -->
+    </div>
+    <div class="display">
+      <%= yield %>
+    </div>
+  <% end %>
+</div>
 
   <%= javascript_include_tag '//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js' %>
 
