@@ -5,6 +5,9 @@ class TripsController < ApplicationController
   def data
     user_trips = Trip.where user: current_user
     trip_locations = user_trips.pluck(:location)
+    trip_transportations = user_trips.pluck(:transportation)
+    trip_accomodations = user_trips.pluck(:accomodation)
+
     # lunch_dates = user_lunches.pluck(:lunch_date)
     raise
     render json: {trips: trip_locations}
@@ -20,7 +23,10 @@ class TripsController < ApplicationController
   # GET /trips/1.json
   def show
     @locations = @trip.locations
+    @transportations = @trip.transportations
+    @accomodations = @trip.accomodations
   end
+
 
   # GET /trips/new
   def new
@@ -41,7 +47,7 @@ class TripsController < ApplicationController
       if @trip.save
         current_user.trip_users.create(user_id: current_user, trip_id: @trip.id)
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
-        format.json { render :show, status: :created, location: @trip }
+        format.json { render :show, status: :created, location: @trip, transportation: @trip, accomodation: @trip}
       else
         format.html { render :new }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
@@ -55,7 +61,7 @@ class TripsController < ApplicationController
     respond_to do |format|
       if @trip.update(trip_params)
         format.html { redirect_to @trip, notice: 'Trip was successfully updated.' }
-        format.json { render :show, status: :ok, location: @trip }
+        format.json { render :show, status: :ok, location: @trip, transportation: @trip, accomodation: @trip}
       else
         format.html { render :edit }
         format.json { render json: @trip.errors, status: :unprocessable_entity }
@@ -109,6 +115,42 @@ class TripsController < ApplicationController
     end
   end
 
+  def upvote_transportation
+    @transportation = Transportation.find(params[:id])
+    @transportation.liked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @transportation.liked_count } }
+    end
+  end
+
+  def downvote_transportation
+    @transportation = Transportation.find(params[:id])
+    @transportation.disliked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @transportation.liked_count } }
+    end
+  end
+
+  def upvote_accomodation
+    @accomodation = Accomodation.find(params[:id])
+    @accomodation.liked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @accomodation.liked_count } }
+    end
+  end
+
+  def downvote_accomodation
+    @accomodation = Accomodation.find(params[:id])
+    @accomodation.disliked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @accomodation.liked_count } }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_trip
@@ -119,6 +161,8 @@ class TripsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
       params.require(:trip).permit(:name, :start_date, :end_date,
-        :locations_attributes => [:name, :id, :_destroy])
+        :locations_attributes => [:name, :id, :_destroy],
+        :transportations_attributes => [:url, :id, :_destroy],
+        :accomodations_attributes => [:url, :id, :_destroy])
     end
 end

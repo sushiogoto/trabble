@@ -1,0 +1,23 @@
+<fieldset>
+  <div class="transportation">
+  <% if f.object.URL%>
+    <%= f.label :URL, f.object.URL %>
+    <% if current_user.id.to_s == @trip.owner %>
+      <%= f.hidden_field :_destroy %>
+      <%= link_to 'remove', '#', class: 'remove_fields' %>
+    <% end %>
+
+    <% if current_user.voted_up_for? f.object %>
+        <%= link_to "Rescind Upvote", dislike_transportation_path(f.object), method: :put, class: "button tiny" %> |
+    <% else %>
+        <%= link_to "Upvote Location", like_transportation_path(f.object), method: :put, class: "button tiny" %> |
+    <% end %>
+  <% elsif current_user.id.to_s == @trip.owner %>
+    <%= f.text_field :URL %>
+  <% end %>
+  <span>Upvote count: <%= f.object.votes_for.up.count %> |</span>
+  <span>Voted on by: <%= f.object.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></span>
+  <br />
+
+  </div>
+</fieldset>
