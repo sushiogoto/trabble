@@ -29,6 +29,10 @@ App.controller("TripCtrl", ["$scope", "$http", "$timeout", ($scope, $http, $time
   $scope.increment = ->
     $scope.lunchCount++
 
+  $scope.deadline = ->
+    hello = moment().calendar();
+    alert hello
+
   $scope.updateTripsFromServer = ->
     $http.get('/api/trips.json')
       .success (data) ->
