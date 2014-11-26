@@ -3,46 +3,75 @@
 
 <div class="header-space">
   <div class="header title"><%= @trip.name %> Trip</div>
-  <div class="header subtitle"><%= @trip.start_date %> to <%= @trip.end_date %></div>
+  <div class="header subtitle"> From <%= @trip.start_date %> to <%= @trip.end_date %></div>
 </div>
 
 
 <div class="container">
   <div class="row">
-    <div class="locations">
-      <%= render 'location_form' %>
+    <div class="col-md-4 col-sm-6">
+      <div class="panel-heading">
+        <h3> Location </h3>
+      </div>
+      <div class="panel-body">
+        <div class="locations">
+          <%= render 'location_form' %>
+        </div>
+      </div>
     </div>
 
-    <div class="transportations">
-      <%= render 'transportation_form' %>
+    <div class="col-md-4 col-sm-6">
+      <div class="panel-heading">
+        <h3> Transportation </h3>
+      </div>
+      <div class="panel-body">
+        <div class="transportations">
+          <%= render 'transportation_form' %>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-md-4 col-sm-6">
+      <div class="panel-heading">
+        <h3> Accomodation </h3>
+      </div>
+      <div class="panel-body">
+        <div class="accomodations">
+          <%= render 'accomodation_form' %>
+        </div>
+      </div>
     </div>
 
-    <div class="accomodations">
-      <%= render 'accomodation_form' %>
+    <div class="col-md-10 offset2">
+      <div class="panel-heading">
+        <h3> Discuss </h3>
+      </div>
+      <div class="panel-body">
+        <div class="comments">
+          <%= render 'comment_form' %>
+        </div>
+      </div>
     </div>
 
-    <div class="comments">
-      <%= render 'comment_form' %>
-    </div>
 
-    <h2>Upvote count:</h2>
-    <h3><%= @trip.votes_for.up.count %></h3>
 
-    <h2>Voted on by:</h2>
-    <h3><%= @trip.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></h3>
-    <br />
-    <input type="checkbox" ng-model="checked"><br/>
-    <button ng-model="button" ng-disabled="checked">Button</button>
-<!--     <div ng-disabled="deadline()"> -->
-      <% if current_user.voted_up_for? @trip %>
-          <%= link_to "Rescind Upvote", dislike_trip_path(@trip), method: :put, class: "button tiny" %> |
-      <% else %>
-          <%= link_to "Upvote Trip", like_trip_path(@trip), method: :put, class: "button tiny" %> |
-      <% end %>
-<!--     </div> -->
+
+    <div class="main-vote">
+      <h4><%= @trip.votes_for.up.count %> participant(s) voted for this trip already</h4>
+
+      <h5>Voted on by:<%= @trip.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></h5>
+      <br />
+
+    <% if current_user.voted_up_for? @trip %>
+        <%= link_to "Rescind Upvote", dislike_trip_path(@trip), method: :put, class: "button tiny" %> |
+    <% else %>
+        <%= link_to "Upvote Trip", like_trip_path(@trip), method: :put, class: "button tiny" %> |
+    <% end %>
+
     <%= link_to 'Invite participants', new_user_invitation_path(trip_id: @trip.id) %> |
 
     <%= link_to 'Edit', edit_trip_path(@trip) %> |
     <%= link_to 'Back', trips_path %>
+    </div>
   </div>
 </div>
