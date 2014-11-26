@@ -26,8 +26,9 @@ App.controller("TripCtrl", ["$scope", "$http", "$timeout", ($scope, $http, $time
   $scope.trips = []
   $scope.lunchCount = 0
 
-  $scope.increment = ->
-    $scope.lunchCount++
+  $scope.emailShot = (details) ->
+    $http.post('/email_shot.json', {details: details})
+      .success (data) ->
 
   $scope.deadline = ->
     now = moment();

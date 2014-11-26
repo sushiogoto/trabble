@@ -1,6 +1,7 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  helper_method :email
 
   def data
     user_trips = Trip.where user: current_user
@@ -30,7 +31,18 @@ class TripsController < ApplicationController
 
   end
 
+  def email
+    TripMailer.data_update_notification(current_user, Location.last).deliver
+    render json: {success: true}
+  end
 
+  class SendWeeklySummary
+    def run
+      User.find_each do |user|
+        UserMailer.weekly_summary(user).deliver_now
+      end
+    end
+  end
   # GET /trips/new
   def new
     @trip = Trip.new
