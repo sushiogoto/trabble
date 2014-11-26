@@ -121,3 +121,20 @@ p {
 .display {
   color: white;
 }
+
+/* container */
+.col-md-4, .col-sm-6 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+  float: left;
+  }
+
+.col-md-4 {
+    width: 33.33333333%;
+  }
+
+.col-sm-6 {
+    width: 50%;
+  }
