@@ -4,8 +4,10 @@ class Trip < ActiveRecord::Base
   has_many :locations, :dependent => :destroy
   has_many :transportations, :dependent => :destroy
   has_many :accomodations, :dependent => :destroy
+  has_many :comments, :dependent => :destroy
   acts_as_votable
   accepts_nested_attributes_for :locations, :allow_destroy => true
   accepts_nested_attributes_for :transportations, :allow_destroy => true
   accepts_nested_attributes_for :accomodations, :allow_destroy => true
+  accepts_nested_attributes_for :comments, :allow_destroy => true
 end

@@ -21,6 +21,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :comments do
+    member do
+      put "like", to: "trips#upvote_comment"
+      put "dislike", to: "trips#downvote_comment"
+    end
+  end
+
   get 'trips' => 'trips#index'
 
   devise_for :users, controllers: { invitations: 'users/invitations',

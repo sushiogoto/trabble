@@ -7,6 +7,7 @@ class TripsController < ApplicationController
     trip_locations = user_trips.pluck(:location)
     trip_transportations = user_trips.pluck(:transportation)
     trip_accomodations = user_trips.pluck(:accomodation)
+    trip_accomodations = user_trips.pluck(:comment)
 
     # lunch_dates = user_lunches.pluck(:lunch_date)
     raise
@@ -25,6 +26,8 @@ class TripsController < ApplicationController
     @locations = @trip.locations
     @transportations = @trip.transportations
     @accomodations = @trip.accomodations
+    @comments = @trip.comments
+
   end
 
 
@@ -151,11 +154,30 @@ class TripsController < ApplicationController
     end
   end
 
+  def upvote_comment
+    @comment = Comment.find(params[:id])
+    @comment.liked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @comment.liked_count } }
+    end
+  end
+
+  def downvote_comment
+    @comment = Comment.find(params[:id])
+    @comment.disliked_by current_user
+    respond_to do |format|
+      format.html {redirect_to :back }
+      format.json { render json: { count: @comment.liked_count } }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_trip
       @trip = Trip.find(params[:id])
       @current_user = current_user
+      @user_comments = @trip.comments.where(user_id: current_user)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
@@ -163,6 +185,7 @@ class TripsController < ApplicationController
       params.require(:trip).permit(:name, :start_date, :end_date,
         :locations_attributes => [:name, :id, :_destroy],
         :transportations_attributes => [:url, :id, :_destroy],
-        :accomodations_attributes => [:url, :id, :_destroy])
+        :accomodations_attributes => [:url, :id, :_destroy],
+        :comments_attributes => [:content, :id, :_destroy])
     end
 end

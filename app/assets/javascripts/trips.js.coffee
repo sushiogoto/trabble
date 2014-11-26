@@ -31,7 +31,6 @@ App.controller("TripCtrl", ["$scope", "$http", "$timeout", ($scope, $http, $time
 
   $scope.deadline = ->
     now = moment();
-    alert now
 
   $scope.updateTripsFromServer = ->
     $http.get('/api/trips.json')

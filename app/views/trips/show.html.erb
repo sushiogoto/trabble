@@ -12,13 +12,17 @@
     <div class="locations">
       <%= render 'location_form' %>
     </div>
-    
+
     <div class="transportations">
       <%= render 'transportation_form' %>
     </div>
 
     <div class="accomodations">
       <%= render 'accomodation_form' %>
+    </div>
+
+    <div class="comments">
+      <%= render 'comment_form' %>
     </div>
 
     <h2>Upvote count:</h2>
@@ -29,13 +33,13 @@
     <br />
     <input type="checkbox" ng-model="checked"><br/>
     <button ng-model="button" ng-disabled="checked">Button</button>
-    <div ng-disabled="deadline()">
+<!--     <div ng-disabled="deadline()"> -->
       <% if current_user.voted_up_for? @trip %>
           <%= link_to "Rescind Upvote", dislike_trip_path(@trip), method: :put, class: "button tiny" %> |
       <% else %>
           <%= link_to "Upvote Trip", like_trip_path(@trip), method: :put, class: "button tiny" %> |
       <% end %>
-    </div>
+<!--     </div> -->
     <%= link_to 'Invite participants', new_user_invitation_path(trip_id: @trip.id) %> |
 
     <%= link_to 'Edit', edit_trip_path(@trip) %> |

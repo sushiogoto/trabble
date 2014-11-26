@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   acts_as_voter
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :invitable, :database_authenticatable, :registerable,
@@ -7,6 +8,7 @@ class User < ActiveRecord::Base
          :omniauthable, :omniauth_providers => [:facebook]
 
   has_many :trip_users
+  has_many :comments, :dependent => :destroy
   has_many :trips, :through => :trip_users
 
   def self.from_omniauth(auth)
