@@ -8,7 +8,6 @@ class TripsController < ApplicationController
     trip_transportations = user_trips.pluck(:transportation)
     trip_accomodations = user_trips.pluck(:accomodation)
 
-
     # lunch_dates = user_lunches.pluck(:lunch_date)
     raise
     render json: {trips: trip_locations}
@@ -26,7 +25,6 @@ class TripsController < ApplicationController
     @locations = @trip.locations
     @transportations = @trip.transportations
     @accomodations = @trip.accomodations
-
   end
 
 
@@ -163,6 +161,8 @@ class TripsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
       params.require(:trip).permit(:name, :start_date, :end_date,
-        :locations_attributes => [:name, :id, :_destroy])
+        :locations_attributes => [:name, :id, :_destroy],
+        :transportations_attributes => [:url, :id, :_destroy],
+        :accomodations_attributes => [:url, :id, :_destroy])
     end
 end
