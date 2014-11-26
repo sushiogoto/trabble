@@ -5,10 +5,9 @@ class CreateAccomodations < ActiveRecord::Migration
       t.date :check_in
       t.date :check_out
       t.integer :price
-      t.integer :trip_id
+      t.references :trip, index: true
 
       t.timestamps
     end
-    add_index :accomodations, :trip_id
   end
 end

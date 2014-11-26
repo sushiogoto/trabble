@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141125095843) do
+ActiveRecord::Schema.define(version: 20141126023130) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "accomodations", force: true do |t|
+    t.string   "url"
+    t.date     "check_in"
+    t.date     "check_out"
+    t.integer  "price"
+    t.integer  "trip_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "accomodations", ["trip_id"], name: "index_accomodations_on_trip_id", using: :btree
 
   create_table "locations", force: true do |t|
     t.string   "name"
@@ -26,13 +38,13 @@ ActiveRecord::Schema.define(version: 20141125095843) do
   add_index "locations", ["trip_id"], name: "index_locations_on_trip_id", using: :btree
 
   create_table "transportations", force: true do |t|
-    t.string   "URL"
-    t.date     "Departure_date"
-    t.date     "Return_date"
-    t.integer  "Price"
+    t.string   "url"
+    t.date     "departure_date"
+    t.date     "return_date"
+    t.integer  "price"
+    t.integer  "trip_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "trip_id"
   end
 
   add_index "transportations", ["trip_id"], name: "index_transportations_on_trip_id", using: :btree

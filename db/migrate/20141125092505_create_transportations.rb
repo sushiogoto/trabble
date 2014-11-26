@@ -1,10 +1,11 @@
 class CreateTransportations < ActiveRecord::Migration
   def change
     create_table :transportations do |t|
-      t.string :URL
-      t.date :Departure_date
-      t.date :Return_date
-      t.integer :Price
+      t.string :url
+      t.date :departure_date
+      t.date :return_date
+      t.integer :price
+      t.references :trip, index: true
 
       t.timestamps
     end
