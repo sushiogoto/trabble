@@ -95,6 +95,10 @@ p {
 .header-space {
   background-color: #A8A8A8;
   opacity: 0.7;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
   width: 1200px;
   position: relative;
 }
@@ -102,6 +106,10 @@ p {
 .header {
   z-index: 50;
   background-color: #A8A8A8;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  border-bottom-left-radius: 3px;
   letter-spacing: -2px;
   text-align: center;
   color: white;
