@@ -13,16 +13,18 @@
       <div class="panel-heading">
         <h3> Location </h3>
       </div>
-      <div class="row">
-        <div class="col-md-2 col-md-offset-5 btn btn-success" ng-click='emailShot(<% @trip.locations %>)' ng-if="!saved">Email</div>
-        <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
-      </div>
       <div class="panel-body">
         <div class="locations">
           <%= render 'location_form' %>
         </div>
       </div>
+      <div class="row">
+        <div class="col-md-2 col-md-offset-5 btn btn-success" ng-click='emailShot(locations)' ng-if="!saved">Email</div>
+        <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+      </div>
     </div>
+
+    <!-- BEFORE YOU LEFT - planning on sending current_user information to angular, so that you can use $filter in the angular controller to then get trip data specific for the user so that you can use angular in the nglick event -->
 
     <div class="col-md-4 col-sm-6">
       <div class="panel-heading">

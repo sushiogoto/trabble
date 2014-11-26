@@ -22,21 +22,25 @@ $('.vote')
 
 App = angular.module("myApp", [])
 
-App.controller("TripCtrl", ["$scope", "$http", "$timeout", ($scope, $http, $timeout) ->
+App.controller("TripCtrl", ["$scope", "$http", "$timeout", "$filter", ($scope, $http, $timeout, $filter) ->
   $scope.trips = []
   $scope.lunchCount = 0
 
   $scope.emailShot = (details) ->
-    $http.post('/email_shot.json', {details: details})
+    console.log details
+    jsonObj = { data: details }
+    $http.post('/email_shot.json', details)
       .success (data) ->
+        alert data
 
   $scope.deadline = ->
     now = moment();
 
   $scope.updateTripsFromServer = ->
-    $http.get('/api/trips.json')
+    $http.get('/api/trips/data.json')
       .success (data) ->
-        $scope.trips = data
-
+        $scope.locations = data.locations
+        $scope.user = data.user
+        # $filter('filter')(data, {}
   $scope.updateTripsFromServer()
 ])

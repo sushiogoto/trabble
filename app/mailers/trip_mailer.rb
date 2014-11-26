@@ -7,7 +7,6 @@ class TripMailer < ActionMailer::Base
   #   en.trip_mailer.data_update_notification.subject
   #
   def data_update_notification(user, deets)
-
     @trip = user.trips.first.name
 
     if deets.is_a? Location
