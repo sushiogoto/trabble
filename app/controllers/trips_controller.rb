@@ -186,6 +186,6 @@ class TripsController < ApplicationController
         :locations_attributes => [:name, :id, :_destroy],
         :transportations_attributes => [:url, :id, :_destroy],
         :accomodations_attributes => [:url, :id, :_destroy],
-        :comments_attributes => [:content, :id, :_destroy])
+        :comments_attributes => [:content, :id, :user_id, :_destroy])
     end
 end
