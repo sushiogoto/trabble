@@ -56,10 +56,10 @@ class TripsController < ApplicationController
   # POST /trips
   # POST /trips.json
   def create
-    @trip.owner = current_user
-    trip_params = deadline_params
-    # Date.strptime(order_params[:scheduled_date], '%m/%d/%Y %I:%M %p')
     @trip = Trip.new(trip_params)
+    @trip.owner = current_user
+    # trip_params = deadline_params
+    # Date.strptime(order_params[:scheduled_date], '%m/%d/%Y %I:%M %p')
     respond_to do |format|
       if @trip.save
         current_user.trip_users.create(user_id: current_user, trip_id: @trip.id)
