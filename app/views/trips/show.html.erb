@@ -9,7 +9,7 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-8">
       <div class="panel-heading">
         <h3> Location </h3>
       </div>
@@ -18,15 +18,21 @@
           <%= render 'location_form' %>
         </div>
       </div>
-      <div class="row">
-        <div class="col-md-2 col-md-offset-5 btn btn-success" ng-click='emailShot(locations)' ng-if="!saved">Email</div>
-        <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+    </div>
+    <div class="col-md-4">
+      <div class="panel-heading">
+        <h3> Discuss </h3>
       </div>
+    <div class="panel-body">
+      <div class="comments">
+        <%= render 'comment_form' %>
+      </div>
+    </div>
     </div>
 
     <!-- BEFORE YOU LEFT - planning on sending current_user information to angular, so that you can use $filter in the angular controller to then get trip data specific for the user so that you can use angular in the nglick event -->
 
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-8">
       <div class="panel-heading">
         <h3> Transportation </h3>
       </div>
@@ -37,7 +43,7 @@
       </div>
 
     </div>
-    <div class="col-md-4 col-sm-6">
+    <div class="col-md-8">
       <div class="panel-heading">
         <h3> Accomodation </h3>
       </div>
@@ -47,20 +53,6 @@
         </div>
       </div>
     </div>
-
-    <div class="col-md-10 offset2">
-      <div class="panel-heading">
-        <h3> Discuss </h3>
-      </div>
-      <div class="panel-body">
-        <div class="comments">
-          <%= render 'comment_form' %>
-        </div>
-      </div>
-    </div>
-
-
-
 
     <div class="main-vote">
       <h4><%= @trip.votes_for.up.count %> participant(s) voted for this trip already</h4>
