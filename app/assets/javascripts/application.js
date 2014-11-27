@@ -18,4 +18,6 @@
 //= require angular-ui-bootstrap
 //= require angular-animate
 //= require angular-resource
+//= require angular-route
+//= require angular-rails-templates
 //= require_tree .

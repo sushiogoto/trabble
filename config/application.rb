@@ -20,6 +20,7 @@ module Trabble
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
     Koala.config.api_version = 'v2.0'
+    config.assets.paths << Rails.root.join('vendor', 'assets', 'bower_components')
     config.app_generators.scaffold_controller = :scaffold_controller
   end
 end

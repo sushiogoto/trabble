@@ -37,7 +37,7 @@ $ ->
   $("#setDate").click( -> $('#datetimepicker3').data("DateTimePicker").setDate("2013-10-23 12:00"))
   $("#getDate").click( -> alert($('#datetimepicker3').data("DateTimePicker").getDate()))
 
-App = angular.module("myApp", ["ngRoute", "ui.bootstrap"])
+App = angular.module("myApp", ["ngRoute", "ui.bootstrap", "templates"])
 
 App.controller("TripCtrl", ["$scope", "$http", "$timeout", "$filter", ($scope, $http, $timeout, $filter) ->
   $scope.trips = []
@@ -74,4 +74,14 @@ App.directive('progressbar', [ ->
 
       $scope.$watch ->
         $element.progressbar value: $scope.progress
+])
+
+App.config([ '$routeProvider', ($routeProvider)->
+  $routeProvider
+    .when('/',
+      templateUrl: "trip_details.html",
+      controller: 'TripCtrl'
+    )
+
+  console.log "I AM IN App.config"
 ])

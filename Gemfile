@@ -43,6 +43,8 @@ gem 'momentjs-rails', '>= 2.8.1'
 gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 gem 'angular-ui-bootstrap-rails'
 gem "koala", "~> 1.10.0rc"
+gem "bower-rails", "~> 0.9.1"
+gem 'angular-rails-templates'
 
 group :development do
   # Spring speeds up development by keeping your application running in the background.
