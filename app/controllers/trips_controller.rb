@@ -30,9 +30,11 @@ class TripsController < ApplicationController
 
   end
 
-  def email(details)
-    binding.pry
-    TripMailer.data_update_notification(current_user, details).deliver
+  def email
+    model_name = params[:model]
+    trip_id = params[:trip_id]
+
+    TripMailer.data_update_notification(current_user, model_name, trip_id).deliver
     render json: {success: true}
   end
 

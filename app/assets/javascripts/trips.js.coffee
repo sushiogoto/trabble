@@ -20,27 +20,40 @@ $('.vote')
   .on('ajax:success', (data) -> $(this).html(data.count))
 
 
-App = angular.module("myApp", [])
+App = angular.module("myApp", ["ngRoute"])
 
 App.controller("TripCtrl", ["$scope", "$http", "$timeout", "$filter", ($scope, $http, $timeout, $filter) ->
   $scope.trips = []
   $scope.lunchCount = 0
 
-  $scope.emailShot = (details) ->
-    console.log details
-    jsonObj = { data: details }
-    $http.post('/email_shot.json', details)
+  $scope.emailShot = (trip_id, model_name) ->
+    jsonObj = { model: model_name }
+    $http.post("/email_shot/#{trip_id}.json", jsonObj)
       .success (data) ->
-        alert data
+        console.log data
 
   $scope.deadline = ->
     now = moment();
 
-  $scope.updateTripsFromServer = ->
+  $scope.init = (trip) ->
     $http.get('/api/trips/data.json')
       .success (data) ->
-        $scope.locations = data.locations
+        $scope.details = data
         $scope.user = data.user
         # $filter('filter')(data, {}
-  $scope.updateTripsFromServer()
+  $scope.init()
+])
+
+App.config(['$routeProvider', ($routeProvider) ->
+  $routeProvider
+  .when('/trips/:id', {
+    controller: 'TripCtrl',
+    resolve: {
+      params: ['$route', ($route) ->
+        params = {user_id: $route.current.params.user_id}
+        debugger
+        return params
+      ]
+    }
+  })
 ])

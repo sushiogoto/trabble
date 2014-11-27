@@ -6,7 +6,7 @@
   <div class="header subtitle"> From <%= @trip.start_date %> to <%= @trip.end_date %></div>
 </div>
 
-
+<!-- <div ng-init="init(<%= @trip.id %>)"></div> -->
 <div class="container">
   <div class="row">
     <div class="col-md-4 col-sm-6">
@@ -17,14 +17,14 @@
         <div class="locations">
           <%= render 'location_form' %>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-2 col-md-offset-5 btn btn-success" ng-click='emailShot(locations)' ng-if="!saved">Email</div>
-        <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+        <% if current_user.id.to_s == @trip.owner %>
+          <div class="row">
+            <div class="col-md-2 col-md-offset-5 btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email</div>
+            <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+          </div>
+        <% end %>
       </div>
     </div>
-
-    <!-- BEFORE YOU LEFT - planning on sending current_user information to angular, so that you can use $filter in the angular controller to then get trip data specific for the user so that you can use angular in the nglick event -->
 
     <div class="col-md-4 col-sm-6">
       <div class="panel-heading">
@@ -34,8 +34,13 @@
         <div class="transportations">
           <%= render 'transportation_form' %>
         </div>
+        <% if current_user.id.to_s == @trip.owner %>
+          <div class="row">
+            <div class="col-md-2 col-md-offset-5 btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'transportation')" ng-if="!saved">Email</div>
+            <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+          </div>
+        <% end %>
       </div>
-
     </div>
     <div class="col-md-4 col-sm-6">
       <div class="panel-heading">
@@ -45,6 +50,12 @@
         <div class="accomodations">
           <%= render 'accomodation_form' %>
         </div>
+        <% if current_user.id.to_s == @trip.owner %>
+          <div class="row">
+            <div class="col-md-2 col-md-offset-5 btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'accomodation')" ng-if="!saved">Email</div>
+            <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+          </div>
+        <% end %>
       </div>
     </div>
 

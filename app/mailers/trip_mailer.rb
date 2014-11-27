@@ -6,16 +6,27 @@ class TripMailer < ActionMailer::Base
   #
   #   en.trip_mailer.data_update_notification.subject
   #
-  def data_update_notification(user, deets)
-    @trip = user.trips.first.name
-
-    if deets.is_a? Location
-      @details = deets.name
+  def data_update_notification(user, model, trip_id)
+    trip = Trip.find_by(id: trip_id)
+    trip_users = trip.users
+    trip_locations = trip.locations
+    trip_accomodations = trip.accomodations
+    trip_transportations = trip.transportations
+    trip_name = trip.name
+    @model = model
+    if model == "location"
+      @details = trip_locations.map { |location| location.name }.join(", ")
+    elsif model == "transportation"
+      @details = trip_transportations.map { |transportation| transportation.url }.join(", ")
+    elsif model == "accomodation"
+      @details = trip_accomodations.map { |accomodation| accomodation.url }.join(", ")
     else
-      @details = deets.url
+      @details = ""
     end
 
-
-    mail to: user.email
+    trip_users.each do |user|
+      @user = user.email
+      mail to: user.email
+    end
   end
 end
