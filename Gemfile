@@ -39,7 +39,8 @@ gem 'acts_as_votable', '~> 0.10.0'
 
 gem 'omniauth-facebook', '1.4.0'
 
-gem 'momentjs-rails'
+gem 'momentjs-rails', '>= 2.8.1'
+gem 'bootstrap3-datetimepicker-rails', '~> 3.1.3'
 
 group :development do
   # Spring speeds up development by keeping your application running in the background.

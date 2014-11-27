@@ -2,6 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+
   $('form').on 'click', '.remove_fields', (event) ->
     $(this).prev('input[type=hidden]').val('1')
     $(this).closest('.locations').hide()
@@ -13,12 +14,22 @@ $ ->
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
 
-$('.vote')
-  .on('ajax:send', -> $(this).addClass('loading'))
-  .on('ajax:complete', -> $(this).removeClass('loading'))
-  .on('ajax:error', -> $(this).after('<div class="error">There was an issue.</div>'))
-  .on('ajax:success', (data) -> $(this).html(data.count))
+  $('.vote')
+    .on('ajax:send', -> $(this).addClass('loading'))
+    .on('ajax:complete', -> $(this).removeClass('loading'))
+    .on('ajax:error', -> $(this).after('<div class="error">There was an issue.</div>'))
+    .on('ajax:success', (data) -> $(this).html(data.count))
 
+  $('#datetimepicker3').datetimepicker({
+      pick12HourFormat: false
+  });
+  $("#setMinDate").click( -> $('#datetimepicker3').data("DateTimePicker").setMinDate(new Date("june 12, 2013")))
+  $("#setMaxDate").click( -> $('#datetimepicker3').data("DateTimePicker").setMaxDate(new Date("july 4, 2013")))
+  $("#show").click( -> $('#datetimepicker3').data("DateTimePicker").show())
+  $("#disable").click( -> $('#datetimepicker3').data("DateTimePicker").disable())
+  $("#enable").click( -> $('#datetimepicker3').data("DateTimePicker").enable())
+  $("#setDate").click( -> $('#datetimepicker3').data("DateTimePicker").setDate("10/23/2013"))
+  $("#getDate").click( -> alert($('#datetimepicker3').data("DateTimePicker").getDate()))
 
 App = angular.module("myApp", ["ngRoute"])
 

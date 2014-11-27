@@ -56,9 +56,10 @@ class TripsController < ApplicationController
   # POST /trips
   # POST /trips.json
   def create
-    @trip = Trip.new(trip_params)
     @trip.owner = current_user
-
+    trip_params = deadline_params
+    # Date.strptime(order_params[:scheduled_date], '%m/%d/%Y %I:%M %p')
+    @trip = Trip.new(trip_params)
     respond_to do |format|
       if @trip.save
         current_user.trip_users.create(user_id: current_user, trip_id: @trip.id)
@@ -195,7 +196,7 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:name, :start_date, :end_date,
+      params.require(:trip).permit(:name, :start_date, :end_date, :deadline_locations, :deadline_accomodations, :deadline_transportations,
         :locations_attributes => [:name, :id, :_destroy],
         :transportations_attributes => [:url, :id, :_destroy],
         :accomodations_attributes => [:url, :id, :_destroy],
