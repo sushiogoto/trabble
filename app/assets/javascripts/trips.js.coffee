@@ -37,11 +37,13 @@ $ ->
   $("#setDate").click( -> $('#datetimepicker3').data("DateTimePicker").setDate("2013-10-23 12:00"))
   $("#getDate").click( -> alert($('#datetimepicker3').data("DateTimePicker").getDate()))
 
-App = angular.module("myApp", ["ngRoute"])
+App = angular.module("myApp", ["ngRoute", "ui.bootstrap"])
 
 App.controller("TripCtrl", ["$scope", "$http", "$timeout", "$filter", ($scope, $http, $timeout, $filter) ->
   $scope.trips = []
   $scope.lunchCount = 0
+  $scope.value = 10
+  $scope.items = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
 
   $scope.emailShot = (trip_id, model_name) ->
     jsonObj = { model: model_name }
@@ -62,16 +64,14 @@ App.controller("TripCtrl", ["$scope", "$http", "$timeout", "$filter", ($scope, $
   $scope.init()
 ])
 
-App.config(['$routeProvider', ($routeProvider) ->
-  $routeProvider
-  .when('/trips/:id', {
-    controller: 'TripCtrl',
-    resolve: {
-      params: ['$route', ($route) ->
-        params = {user_id: $route.current.params.user_id}
-        debugger
-        return params
-      ]
-    }
-  })
+App.directive('progressbar', [ ->
+    restrict: 'A',
+    scope:
+        'progress': '=progressbar'
+    controller: ($scope, $element, $attrs) ->
+      $element.progressbar
+        value: $scope.progress
+
+      $scope.$watch ->
+        $element.progressbar value: $scope.progress
 ])

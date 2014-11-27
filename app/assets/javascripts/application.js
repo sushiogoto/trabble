@@ -15,4 +15,7 @@
 //= require moment
 //= require bootstrap-datetimepicker
 //= require angular
+//= require angular-ui-bootstrap
+//= require angular-animate
+//= require angular-resource
 //= require_tree .

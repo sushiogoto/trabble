@@ -19,6 +19,7 @@ module Trabble
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+    Koala.config.api_version = 'v2.0'
     config.app_generators.scaffold_controller = :scaffold_controller
   end
 end
