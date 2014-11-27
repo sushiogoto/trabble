@@ -3,7 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .bannertron {
-  background-image: image-url('matterhorn.jpg');
+  background-image: image-url('background_plain.png');
   background-repeat: no-repeat;
   background-size: cover;
   position: fixed;
@@ -63,6 +63,11 @@ $nav-top: 50px;
 
 body {
   padding-top: $nav-top;
+}
+
+.navbar-brand {
+  font-family: Mf End of the Dream;
+  font-size: 30px !important;
 }
 
 .navbar-nav {
