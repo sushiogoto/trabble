@@ -14,8 +14,8 @@
     <% end %>
   <% elsif current_user.id.to_s == @trip.owner %>
     <%= f.text_field :name %>
-  <% end %></br>
-  <span>Upvote count: <%= f.object.votes_for.up.count %></span></br>
+  <% end %>
+  <span>Upvote count: <%= f.object.votes_for.up.count %></span>
   <span>Voted on by: <%= f.object.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></span>
   <br />
 
