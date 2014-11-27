@@ -5,13 +5,12 @@ class TripsController < ApplicationController
 
   def data
     user_trips = current_user.trips
-    trip_locations = user_trips.map {|trip| trip.locations }
     # trip_transportations = user_trips.map {|trip| trip.locations }
     # trip_accomodations = user_trips.pluck(:accomodation)
     # trip_accomodations = user_trips.pluck(:comment)
 # COME BACK TO THIS MAN
     # lunch_dates = user_lunches.pluck(:lunch_date)
-    render json: {locations: trip_locations, user: current_user}
+    render json: {trips: user_trips, user: current_user}
   end
 
   # GET /trips

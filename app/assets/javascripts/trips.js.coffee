@@ -40,7 +40,8 @@ App.controller("TripCtrl", ["$scope", "$http", "$timeout", "$filter", ($scope, $
       .success (data) ->
         $scope.details = data
         $scope.user = data.user
-        # $filter('filter')(data, {}
+        $scope.trips = data.trips
+
   $scope.init()
 ])
 
