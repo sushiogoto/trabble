@@ -1,17 +1,17 @@
 class TripsController < ApplicationController
   before_action :set_trip, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!
+  helper_method :email
 
   def data
-    user_trips = Trip.where user: current_user
-    trip_locations = user_trips.pluck(:location)
-    trip_transportations = user_trips.pluck(:transportation)
-    trip_accomodations = user_trips.pluck(:accomodation)
-    trip_accomodations = user_trips.pluck(:comment)
-
+    user_trips = current_user.trips
+    trip_locations = user_trips.map {|trip| trip.locations }
+    # trip_transportations = user_trips.map {|trip| trip.locations }
+    # trip_accomodations = user_trips.pluck(:accomodation)
+    # trip_accomodations = user_trips.pluck(:comment)
+# COME BACK TO THIS MAN
     # lunch_dates = user_lunches.pluck(:lunch_date)
-    raise
-    render json: {trips: trip_locations}
+    render json: {locations: trip_locations, user: current_user}
   end
 
   # GET /trips
@@ -30,7 +30,19 @@ class TripsController < ApplicationController
 
   end
 
+  def email(details)
+    binding.pry
+    TripMailer.data_update_notification(current_user, details).deliver
+    render json: {success: true}
+  end
 
+  class SendWeeklySummary
+    def run
+      User.find_each do |user|
+        UserMailer.weekly_summary(user).deliver_now
+      end
+    end
+  end
   # GET /trips/new
   def new
     @trip = Trip.new

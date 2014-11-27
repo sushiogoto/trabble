@@ -65,9 +65,11 @@
     </div>
     </div>
   <% else %>
+  <div class="trips" ng-controller="TripCtrl as trip">
     <div class="display">
       <%= yield %>
     </div>
+  </div>
   <% end %>
 </div>
 

@@ -29,6 +29,7 @@ Rails.application.routes.draw do
   end
 
   get 'trips' => 'trips#index'
+  post 'email_shot' => 'trips#email'
 
   devise_for :users, controllers: { invitations: 'users/invitations',
                                     sessions: 'users/sessions',

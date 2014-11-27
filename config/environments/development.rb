@@ -1,8 +1,8 @@
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
-  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
-  config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {:address => 'localhost', :port => 1025}
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
@@ -40,4 +40,12 @@ Rails.application.configure do
   #
 
   config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.smtp_settings = {
+    :authentication => :plain,
+    :address => "smtp.mailgun.org",
+    :port => 587,
+    :domain => "sandbox856a105976404158b42f85fa6c0caeb6.mailgun.org",
+    :user_name => "postmaster@sandbox856a105976404158b42f85fa6c0caeb6.mailgun.org",
+    :password => "d04cb5c4b05c0c8d6644e20a7e1ada7d"
+  }
 end
