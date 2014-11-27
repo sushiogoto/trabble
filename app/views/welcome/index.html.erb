@@ -1,6 +1,6 @@
 <div class="bannertron">
   <div class="container">
-  <% if user_signed_in = false %>
+  <% if !user_signed_in? %>
     <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %> |
   <% else %>
     Welcome <%= current_user.name %> | 

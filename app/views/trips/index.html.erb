@@ -16,9 +16,13 @@
     </div>
     <!-- /#sidebar-wrapper -->
 
-    <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
-
-  <h1 class="text-center">Your Trips</h1>
+  <% if current_user.trips.count == 0 %>
+    <h1 class="text-center">You have no trip planned yet, let's get tempted:</h1>
+    <%= link_to 'Plan a New Trip with your Friends Now!', new_trip_path, class: "btn btn-lg btn-default" %><div>
+  <% else %>
+    <h1 class="text-center">Enjoy the trip to come!</h1>
+  <% end %>
 
 </div>
 
+   
