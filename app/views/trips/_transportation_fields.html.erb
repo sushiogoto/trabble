@@ -1,7 +1,7 @@
 <fieldset>
   <div class="transportation">
-  <% if f.object.URL%>
-    <%= f.label :URL, f.object.URL %>
+  <% if f.object.url%>
+    <%= f.label :url, f.object.url %>
     <% if current_user.id.to_s == @trip.owner %>
       <%= f.hidden_field :_destroy %>
       <%= link_to 'remove', '#', class: 'remove_fields' %>
@@ -13,7 +13,7 @@
         <%= link_to "Upvote Location", like_transportation_path(f.object), method: :put, class: "button tiny" %> |
     <% end %>
   <% elsif current_user.id.to_s == @trip.owner %>
-    <%= f.text_field :URL %>
+    <%= f.text_field :url %>
   <% end %>
   <span>Upvote count: <%= f.object.votes_for.up.count %> |</span>
   <span>Voted on by: <%= f.object.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></span>
