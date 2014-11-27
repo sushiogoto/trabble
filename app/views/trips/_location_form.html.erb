@@ -10,13 +10,13 @@
       </ul>
     </div>
   <% end %>
-  <% if current_user.id.to_s == @trip.owner %>
-   <%= link_to_add_locations "Add Location", f, :locations %>
-  <% end %>
   <%= f.fields_for :locations do |builder| -%><br />
     <div class="locations">
       <%= render 'location_fields', f:builder %>
     </div>
+  <% end %>
+  <% if current_user.id.to_s == @trip.owner %>
+    <%= link_to_add_locations "Add Location", f, :locations %>
   <% end %>
 
   <div class="actions">

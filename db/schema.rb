@@ -49,13 +49,13 @@ ActiveRecord::Schema.define(version: 20141127071604) do
   add_index "locations", ["trip_id"], name: "index_locations_on_trip_id", using: :btree
 
   create_table "transportations", force: true do |t|
-    t.string   "url"
-    t.date     "departure_date"
-    t.date     "return_date"
-    t.integer  "price"
-    t.integer  "trip_id"
+    t.string   "URL"
+    t.date     "Departure_date"
+    t.date     "Return_date"
+    t.integer  "Price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "trip_id"
   end
 
   add_index "transportations", ["trip_id"], name: "index_transportations_on_trip_id", using: :btree

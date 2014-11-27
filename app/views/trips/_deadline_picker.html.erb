@@ -4,6 +4,7 @@
             <%= form_for @trip, class: 'form-group' do |f| %>
 
               <div class="field">
+                <%= f.text_field :deadline_locations, 'data-behaviour' => 'datepicker' %>
                 <%= f.label "Voting Deadline" %>
                 <div class='input-group date' id='datetimepicker3'>
 
