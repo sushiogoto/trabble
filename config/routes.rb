@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   end
 
   get 'trips' => 'trips#index'
-  post 'email_shot' => 'trips#email'
+  post 'email_shot/:trip_id' => 'trips#email'
 
   devise_for :users, controllers: { invitations: 'users/invitations',
                                     sessions: 'users/sessions',
