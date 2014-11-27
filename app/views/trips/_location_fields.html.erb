@@ -8,14 +8,14 @@
     <% end %>
 
     <% if current_user.voted_up_for? f.object %>
-        <%= link_to "Rescind Upvote", dislike_location_path(f.object), method: :put, class: "button tiny" %> |
+        <%= link_to "Withdraw vote", dislike_location_path(f.object), method: :put, class: "glyphicon glyphicon-hand-down" %> 
     <% else %>
-        <%= link_to "Upvote Location", like_location_path(f.object), method: :put, class: "button tiny" %> |
+        <%= link_to "Vote for Location", like_location_path(f.object), method: :put, class: "glyphicon glyphicon-hand-up" %> 
     <% end %>
   <% elsif current_user.id.to_s == @trip.owner %>
     <%= f.text_field :name %>
-  <% end %>
-  <span>Upvote count: <%= f.object.votes_for.up.count %> |</span>
+  <% end %></br>
+  <span>Upvote count: <%= f.object.votes_for.up.count %></span></br>
   <span>Voted on by: <%= f.object.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></span>
   <br />
 
