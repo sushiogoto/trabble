@@ -7,16 +7,14 @@
 </div>
 
 <!-- <div ng-init="init(<%= @trip.id %>)"></div> -->
+
 <div class="container">
-  <div class="row">
   <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
     <div class="panel panel-default col-md-8">
       <div class="panel-heading" role="tab" id="headingOne">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <h3> Location </h3>
-          </a>
-        </h4>
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          <h3> Location </h3>
+        </a>
       </div>
       <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
         <div class="panel-body">
@@ -32,26 +30,23 @@
         </div>
       </div>
     </div>
-
     <div class="col-md-4">
       <div class="panel-heading">
         <h3> Discuss </h3>
       </div>
-    <div class="panel-body">
-      <div class="comments">
-        <%= render 'comment_form' %>
+      <div class="panel-body">
+        <div class="comments">
+          <%= render 'comment_form' %>
+        </div>
       </div>
-    </div>
     </div>
 
     <!-- BEFORE YOU LEFT - planning on sending current_user information to angular, so that you can use $filter in the angular controller to then get trip data specific for the user so that you can use angular in the nglick event -->
     <div class="panel panel-default col-md-8">
       <div class="panel-heading" role="tab" id="headingTwo">
-        <h4 class="panel-title">
-          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <h3>Transportation</h3>
-          </a>
-        </h4>
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          <h3>Transportation</h3>
+        </a>
       </div>
       <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
         <div class="panel-body">
@@ -70,11 +65,9 @@
       
     <div class="panel panel-default col-md-8">
       <div class="panel-heading" role="tab" id="headingThree">
-        <h4 class="panel-title">
-          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            <h3> Accomodation </h3>
-          </a>
-        </h4>
+        <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          <h3> Accomodation </h3>
+        </a>
       </div>
       <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
         <div class="panel-body">
@@ -89,27 +82,16 @@
           <% end %> 
         </div>
       </div>
-    </div>  
-
-    <div class="main-vote">
-      <h4><%= @trip.votes_for.up.count %> participant(s) voted for this trip already</h4>
-
-      <h5>Voted on by:<%= @trip.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></h5>
-      <br />
-
-    <% if current_user.voted_up_for? @trip %>
-        <%= link_to "Rescind Upvote", dislike_trip_path(@trip), method: :put, class: "button tiny" %> |
-    <% else %>
-        <%= link_to "Upvote Trip", like_trip_path(@trip), method: :put, class: "button tiny" %> |
-    <% end %>
-
-    <%= link_to 'Invite participants', new_user_invitation_path(trip_id: @trip.id) %> |
-
-    <%= link_to 'Edit', edit_trip_path(@trip) %> |
-    <%= link_to 'Back', trips_path %>
-
-
-    </div>
-
+    </div> 
   </div>
+</div> 
+
+
+<div class="main-vote">
+<%= link_to 'Invite participants', new_user_invitation_path(trip_id: @trip.id) %> |
+
+<%= link_to 'Edit', edit_trip_path(@trip) %> |
+<%= link_to 'Back', trips_path %>
 </div>
+
+ 
