@@ -28,7 +28,6 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'trips' => 'trips#index'
   post 'email_shot/:trip_id' => 'trips#email'
 
   devise_for :users, controllers: { invitations: 'users/invitations',
@@ -47,6 +46,7 @@ Rails.application.routes.draw do
       put "like", to: "trips#upvote"
       put "dislike", to: "trips#downvote"
     end
+    get 'trips', on: :collection
   end
 
   scope :api do
