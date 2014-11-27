@@ -7,10 +7,12 @@
       <%= link_to 'remove', '#', class: 'remove_fields' %>
     <% end %>
 
-    <% if current_user.voted_up_for? f.object %>
-        <%= link_to "Withdraw vote", dislike_location_path(f.object), method: :put, class: "glyphicon glyphicon-hand-down" %> 
-    <% else %>
-        <%= link_to "Vote for Location", like_location_path(f.object), method: :put, class: "glyphicon glyphicon-hand-up" %> 
+    <% if @deadline_locations == nil || @deadline_locations > Time.now %>
+      <% if current_user.voted_up_for? f.object %>
+          <%= link_to "Withdraw vote", dislike_location_path(f.object), method: :put, class: "glyphicon glyphicon-hand-down" %>
+      <% else %>
+          <%= link_to "Vote for Location", like_location_path(f.object), method: :put, class: "glyphicon glyphicon-hand-up" %>
+      <% end %>
     <% end %>
   <% elsif current_user.id.to_s == @trip.owner %>
     <%= f.text_field :name %>

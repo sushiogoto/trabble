@@ -20,6 +20,12 @@ $ ->
     .on('ajax:error', -> $(this).after('<div class="error">There was an issue.</div>'))
     .on('ajax:success', (data) -> $(this).html(data.count))
 
+  $('#datetimepicker1').datetimepicker({
+      pick12HourFormat: false
+  });
+  $('#datetimepicker2').datetimepicker({
+      pick12HourFormat: false
+  });
   $('#datetimepicker3').datetimepicker({
       pick12HourFormat: false
   });
@@ -28,7 +34,7 @@ $ ->
   $("#show").click( -> $('#datetimepicker3').data("DateTimePicker").show())
   $("#disable").click( -> $('#datetimepicker3').data("DateTimePicker").disable())
   $("#enable").click( -> $('#datetimepicker3').data("DateTimePicker").enable())
-  $("#setDate").click( -> $('#datetimepicker3').data("DateTimePicker").setDate("10/23/2013"))
+  $("#setDate").click( -> $('#datetimepicker3').data("DateTimePicker").setDate("2013-10-23 12:00"))
   $("#getDate").click( -> alert($('#datetimepicker3').data("DateTimePicker").getDate()))
 
 App = angular.module("myApp", ["ngRoute"])

@@ -4,25 +4,37 @@
             <%= form_for @trip, class: 'form-group' do |f| %>
 
               <div class="field">
-                <%= f.text_field :deadline_locations, 'data-behaviour' => 'datepicker' %>
                 <%= f.label "Voting Deadline" %>
-                <div class='input-group date' id='datetimepicker3'>
 
-                    <%= f.text_field :deadline_locations, :as => :datetime_picker %>
-                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
-                    </span>
-                </div>
+                    <% if deadline == @deadline_locations %>
+                        <div class='input-group date' id='datetimepicker3'>
+                            <%= f.text_field :deadline_locations, :as => :datetime_picker, data: {
+                                :"date-format" => "YYYY-MM-DD HH:mm"}, class: "form-control" %>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    <% elsif deadline == @deadline_accomodations %>
+                        <div class='input-group date' id='datetimepicker2'>
+                            <%= f.text_field :deadline_accomodations, :as => :datetime_picker, data: {
+                                :"date-format" => "YYYY-MM-DD HH:mm"}, class: "form-control" %>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    <% elsif deadline == @deadline_transportations %>
+                        <div class='input-group date' id='datetimepicker1'>
+                            <%= f.text_field :deadline_transportations, :as => :datetime_picker, data: {
+                                :"date-format" => "YYYY-MM-DD HH:mm"}, class: "form-control" %>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
+                    <% end %>
               </div>
             <div class="actions">
-              <%= f.submit %>
+              <%= f.submit "Update Deadline" %>
             </div>
-            <button id="setMinDate">setMinDate</button>
-            <button id="setMaxDate">setMaxDate</button>
             <button id="show">show</button>
             <button id="disable">disable</button>
             <button id="enable">enable</button>
-            <button id="setDate">setDate</button>
-            <button id="getDate">getDate</button>
             <% end %>
         </div>
     </div>

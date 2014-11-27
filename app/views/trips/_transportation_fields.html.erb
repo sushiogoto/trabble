@@ -7,10 +7,12 @@
       <%= link_to 'remove', '#', class: 'remove_fields' %>
     <% end %>
 
-    <% if current_user.voted_up_for? f.object %>
-        <%= link_to "Rescind Upvote", dislike_transportation_path(f.object), method: :put, class: "button tiny" %> |
-    <% else %>
-        <%= link_to "Upvote Location", like_transportation_path(f.object), method: :put, class: "button tiny" %> |
+    <% if @deadline_transportations == nil || @deadline_transportations > Time.now %>
+      <% if current_user.voted_up_for? f.object %>
+          <%= link_to "Rescind Upvote", dislike_transportation_path(f.object), method: :put, class: "button tiny" %> |
+      <% else %>
+          <%= link_to "Upvote Location", like_transportation_path(f.object), method: :put, class: "button tiny" %> |
+      <% end %>
     <% end %>
   <% elsif current_user.id.to_s == @trip.owner %>
     <%= f.text_field :url %>
