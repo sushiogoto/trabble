@@ -17,7 +17,7 @@ $ ->
     $(this).closest('.locations').hide()
     event.preventDefault()
 
-  $('.add_fields').on 'click', '.add_fields', (event) ->
+  $('form').on 'click', '.add_fields', (event) ->
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
