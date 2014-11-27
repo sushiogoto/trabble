@@ -10,11 +10,13 @@
       </ul>
     </div>
   <% end %>
+  <ul class="list-group">
   <%= f.fields_for :locations do |builder| -%><br />
-    <div class="locations">
+    <div class="well">
       <%= render 'location_fields', f:builder %>
     </div>
   <% end %>
+  </ul>
   <% if current_user.id.to_s == @trip.owner %>
     <%= link_to_add_locations "Add Location", f, :locations %>
   <% end %>

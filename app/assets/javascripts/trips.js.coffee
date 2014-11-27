@@ -2,13 +2,22 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 $ ->
+  $("#vote").val('0');
+
+  $("#increaseButton").click ->
+    newValue = 1 + parseInt($("#vote").val())
+    $("#vote").val(newValue)
+
+  $("#decreaseButton").click ->
+    newValue = parseInt($("#vote").val()) - 1
+    $("#vote").val(newValue)
 
   $('form').on 'click', '.remove_fields', (event) ->
     $(this).prev('input[type=hidden]').val('1')
     $(this).closest('.locations').hide()
     event.preventDefault()
 
-  $('form').on 'click', '.add_fields', (event) ->
+  $('.add_fields').on 'click', '.add_fields', (event) ->
     time = new Date().getTime()
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
@@ -19,6 +28,7 @@ $ ->
     .on('ajax:complete', -> $(this).removeClass('loading'))
     .on('ajax:error', -> $(this).after('<div class="error">There was an issue.</div>'))
     .on('ajax:success', (data) -> $(this).html(data.count))
+
 
   $('#datetimepicker1').datetimepicker({
       pick12HourFormat: false

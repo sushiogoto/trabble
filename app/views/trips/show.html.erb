@@ -6,6 +6,38 @@
   <div class="header subtitle"> From <%= @trip.start_date %> to <%= @trip.end_date %></div>
 </div>
 
+<div class="container col-md-8">
+
+  <div role="tabpanel">
+  <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Location</a></li>
+      <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
+      <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+      <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+
+      <div role="tabpanel" class="tab-pane active" id="home">
+            <%= render 'location_form' %>
+          <% if current_user.id.to_s == @trip.owner %>
+              <div class="btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email</div>
+              <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+            <%= render "deadline_picker", deadline: @deadline_locations %>
+          <% end %>
+
+      </div>
+
+      <div role="tabpanel" class="tab-pane" id="profile">...</div>
+      <div role="tabpanel" class="tab-pane" id="messages">...</div>
+      <div role="tabpanel" class="tab-pane" id="settings">...</div>
+    </div>
+
+  </div>
+</div>
+
 <div ng-view></div>
 <!-- <div ng-init="init(<%= @trip.id %>)"></div> -->
 <div class="container">
