@@ -1,21 +1,5 @@
 <div class="trips" ng-controller="TripCtrl as trip">
 
-  <!-- Sidebar -->
-  <div id="sidebar-wrapper">
-    <div class="sidebar-nav user_profile">
-      <%= image_tag current_user.largeimage %><br />
-      <%= current_user.name %>
-    </div>
-    <div class="sidebar-nav trips_list">
-      <p>Your Trips</p>
-      <div class="row trips btn btn-block btn-default" ng-repeat="trip in trips">
-        <a ng-href="/trips/{{ trip.id }}" class="col-md-3">{{ trip.name }} </a>
-      </div>
-      <%= link_to 'New Trip', new_trip_path %>
-    </div>
-  </div>
-  <!-- /#sidebar-wrapper -->
-
   <% if current_user.trips.count == 0 %>
     <h1 class="text-center">You have no trip planned yet, let's get tempted:</h1>
     <br/>

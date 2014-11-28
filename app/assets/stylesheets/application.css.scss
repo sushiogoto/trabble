@@ -31,6 +31,14 @@
 //   padding-top: 60px;
 // }
 
+body {
+  background-image: url("background_plain.png");
+  background-size: cover;
+}
+@font-face {
+  font-family: 'dream';
+  src: url('dream.ttf');
+}
 /* universal */
 
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus {
@@ -41,6 +49,11 @@
   h1 {
   margin-bottom: 10px;
   }
+}
+
+.navbar-brand {
+  font-family: 'dream';
+  font-size: 30px !important;
 }
 
  /* typography */
