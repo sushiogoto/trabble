@@ -6,21 +6,23 @@
   <div class="header subtitle"> From <%= @trip.start_date %> to <%= @trip.end_date %></div>
 </div>
 
+
+
 <div class="container col-md-8">
 
   <div role="tabpanel">
   <!-- Nav tabs -->
     <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Location</a></li>
-      <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-      <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-      <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+      <li role="presentation" class="active"><a href="#location" aria-controls="home" role="tab" data-toggle="tab">Location</a></li>
+      <li role="presentation"><a href="#transportation" aria-controls="profile" role="tab" data-toggle="tab">Transportation</a></li>
+      <li role="presentation"><a href="#accomodation" aria-controls="messages" role="tab" data-toggle="tab">Accomodation</a></li>
     </ul>
 
     <!-- Tab panes -->
     <div class="tab-content">
 
-      <div role="tabpanel" class="tab-pane active" id="home">
+      <div role="tabpanel" class="tab-pane active" id="location">
+
             <%= render 'location_form' %>
           <% if current_user.id.to_s == @trip.owner %>
               <div class="btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email</div>
@@ -30,43 +32,29 @@
 
       </div>
 
-      <div role="tabpanel" class="tab-pane" id="profile">...</div>
-      <div role="tabpanel" class="tab-pane" id="messages">...</div>
-      <div role="tabpanel" class="tab-pane" id="settings">...</div>
-    </div>
+      <div role="tabpanel" class="tab-pane" id="transportation">
+
+          <%= render 'transportation_form' %>
+        <% if current_user.id.to_s == @trip.owner %>
+            <div class="btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email</div>
+            <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+          <%= render "deadline_picker", deadline: @deadline_transportations %>
+        <% end %>
+
+      </div>
+      <div role="tabpanel" class="tab-pane" id="accomodation">
+
+          <%= render 'accomodation_form' %>
+        <% if current_user.id.to_s == @trip.owner %>
+            <div class="btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email</div>
+            <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+          <%= render "deadline_picker", deadline: @deadline_accomodations %>
+        <% end %>
+
+      </div>
 
   </div>
 </div>
-
-<div ng-view></div>
-<!-- <div ng-init="init(<%= @trip.id %>)"></div> -->
-<div class="container">
-  <div class="row">
-  <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-    <div class="panel panel-default col-md-8">
-      <div class="panel-heading" role="tab" id="headingOne">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-            <h3> Location </h3>
-          </a>
-        </h4>
-      </div>
-      <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-        <div class="panel-body">
-          <div class="locations">
-            <%= render 'location_form' %>
-          </div>
-        </div>
-        <% if current_user.id.to_s == @trip.owner %>
-          <div class="row">
-            <div class="col-md-2 col-md-offset-5 btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email</div>
-            <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
-          </div>
-          <%= render "deadline_picker", deadline: @deadline_locations %>
-        <% end %>
-      </div>
-    </div>
-
 
     </div>
     <div class="col-md-4">
@@ -78,55 +66,6 @@
         <%= render 'comment_form' %>
       </div>
     </div>
-    </div>
-
-    <!-- BEFORE YOU LEFT - planning on sending current_user information to angular, so that you can use $filter in the angular controller to then get trip data specific for the user so that you can use angular in the nglick event -->
-    <div class="panel panel-default col-md-8">
-      <div class="panel-heading" role="tab" id="headingTwo">
-        <h4 class="panel-title">
-          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-            <h3>Transportation</h3>
-          </a>
-        </h4>
-      </div>
-      <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-        <div class="panel-body">
-          <div class="transportations">
-            <%= render 'transportation_form' %>
-          </div>
-        </div>
-        <% if current_user.id.to_s == @trip.owner %>
-          <div class="row">
-            <div class="col-md-2 col-md-offset-5 btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'transportation')" ng-if="!saved">Email</div>
-            <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
-          </div>
-          <%= render "deadline_picker", deadline: @deadline_transportations %>
-        <% end %>
-      </div>
-    </div>
-
-    <div class="panel panel-default col-md-8">
-      <div class="panel-heading" role="tab" id="headingThree">
-        <h4 class="panel-title">
-          <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-            <h3> Accomodation </h3>
-          </a>
-        </h4>
-      </div>
-      <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
-        <div class="panel-body">
-          <div class="accomodations">
-            <%= render 'accomodation_form' %>
-          </div>
-          <% if current_user.id.to_s == @trip.owner %>
-            <div class="row">
-              <div class="col-md-2 col-md-offset-5 btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'accomodation')" ng-if="!saved">Email</div>
-              <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
-              <%= render "deadline_picker", deadline: @deadline_accomodations %>
-            </div>
-        <% end %>
-        </div>
-      </div>
     </div>
 
     <% if @friends_array[0] != nil %>

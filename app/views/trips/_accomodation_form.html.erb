@@ -10,17 +10,21 @@
       </ul>
     </div>
   <% end %>
-  <% if current_user.id.to_s == @trip.owner %>
-   <%= link_to_add_accomodations "Add Accomodation", f, :accomodations %>
-  <% end %>
+  <ul class="list-group">
   <%= f.fields_for :accomodations do |builder| -%><br />
-    <div class="accomodations">
+    <div class="well">
       <%= render 'accomodation_fields', f:builder %>
     </div>
   <% end %>
+  </ul>
+  <% if current_user.id.to_s == @trip.owner %>
+    <button type="button" class="btn btn-default">
+      <%= link_to_add_accomodations "Add Accomodation", f, :accomodations %>
+    </button><br /><br />
+  <% end %>
 
+<!--   <div class="actions">
+    <%= f.submit "Update", class: "btn btn-default" %>
+  </div> -->
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
 <% end %>

@@ -29,6 +29,6 @@ module ApplicationHelper
     fields = f.fields_for(association, new_object, child_index: id) do |builder|
       render('comment_fields', f: builder)
     end
-    link_to(url, '#', class: "add_fields", data: {id: id, fields: fields.gsub("\n", "")})
+    link_to(url, '#', class: "add_fields btn btn-default", data: {id: id, fields: fields.gsub("\n", "")})
   end
 end

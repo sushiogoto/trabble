@@ -1,13 +1,12 @@
-<div class="container">
+<div class="container-fluid">
     <div class="row">
-        <div class='col-md-3'>
+        <div class='col-md-8'>
             <%= form_for @trip, class: 'form-group' do |f| %>
 
               <div class="field">
-                <%= f.label "Voting Deadline" %>
 
                     <% if deadline == @deadline_locations %>
-                        <div class='input-group date' id='datetimepicker3'>
+                        <span class="deadline-title">Set Vote Deadline</span><div class='input-group date' id='datetimepicker3'>
                             <%= f.text_field :deadline_locations, :as => :datetime_picker, data: {
                                 :"date-format" => "YYYY-MM-DD HH:mm"}, class: "form-control" %>
                             <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span>
@@ -30,11 +29,8 @@
                     <% end %>
               </div>
             <div class="actions">
-              <%= f.submit "Update Deadline" %>
+              <%= f.submit "Update Deadline", class: "btn btn-default" %>
             </div>
-            <button id="show">show</button>
-            <button id="disable">disable</button>
-            <button id="enable">enable</button>
             <% end %>
         </div>
     </div>

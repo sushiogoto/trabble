@@ -18,12 +18,14 @@
   <% end %>
   </ul>
   <% if current_user.id.to_s == @trip.owner %>
-    <%= link_to_add_locations "Add Location", f, :locations %>
+    <button type="button" class="btn btn-default">
+      <%= link_to_add_locations "Add Location", f, :locations %>
+    </button><br /><br />
   <% end %>
-
+<!--
   <div class="actions">
-    <%= f.submit %>
-  </div>
+    <%= f.submit "Update", class: "btn btn-default" %>
+  </div> -->
 
 <% end %>
 

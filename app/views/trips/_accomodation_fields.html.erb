@@ -1,25 +1,39 @@
 <fieldset>
-  <div class="accomodation">
-  <% if f.object.url%>
-    <%= f.label :url, f.object.url %>
+  <div class="accomodations">
+  <% if f.object.url %>
+
+    <div class="row parent">
+    <% if @deadline_accomodations == nil || @deadline_accomodations > Time.now %>
+
+          <div class="col-sm-2 col-md-2 col-lg-2">
+            <div class="input-group btn-group" role="group">
+              <span class="input-group-btn">
+                <%= link_to "+", like_accomodation_path(f.object), method: :put, :id => "increaseButton", class: "btn btn-success" %>
+              </span>
+              <span><button type="button" class="btn btn-default"><%= f.object.votes_for.size %></button></span>
+              <span class="input-group-btn" btn-group" role="group"">
+                <%= link_to "-", dislike_accomodation_path(f.object), method: :put, :id => "decreaseButton", class: "btn btn-danger" %>
+              </span>
+            </div>
+          </div>
+
+          <div class="col-sm-6 col-md-6 col-lg-6">
+            <span class="individual-item"><%= f.object.url %></span>
+            <span>Voted on by: <%= f.object.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></span>
+            <br />
+          </div>
+
+    <% end %>
+
     <% if current_user.id.to_s == @trip.owner %>
       <%= f.hidden_field :_destroy %>
       <%= link_to 'remove', '#', class: 'remove_fields' %>
     <% end %>
 
-    <% if @deadline_accomodations == nil || @deadline_accomodations > Time.now %>
-      <% if current_user.voted_up_for? f.object %>
-          <%= link_to "Rescind Upvote", dislike_accomodation_path(f.object), method: :put, class: "button tiny" %> |
-      <% else %>
-          <%= link_to "Upvote Accomodation", like_accomodation_path(f.object), method: :put, class: "button tiny" %> |
-      <% end %>
-    <% end %>
   <% elsif current_user.id.to_s == @trip.owner %>
     <%= f.text_field :url %>
   <% end %>
-  <span>Upvote count: <%= f.object.votes_for.up.count %> |</span>
-  <span>Voted on by: <%= f.object.votes_for.up.by_type(User).voters.map { |user| user.email }.join(", ") %></span>
-  <br />
+  </div>
 
   </div>
 </fieldset>

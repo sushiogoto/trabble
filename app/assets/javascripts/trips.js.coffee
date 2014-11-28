@@ -30,15 +30,15 @@ $ ->
     .on('ajax:success', (data) -> $(this).html(data.count))
 
 
-  $('#datetimepicker1').datetimepicker({
+  $('#datetimepicker1').datetimepicker
       pick12HourFormat: false
-  });
-  $('#datetimepicker2').datetimepicker({
+
+  $('#datetimepicker2').datetimepicker
       pick12HourFormat: false
-  });
-  $('#datetimepicker3').datetimepicker({
+
+  $('#datetimepicker3').datetimepicker
       pick12HourFormat: false
-  });
+
   $("#setMinDate").click( -> $('#datetimepicker3').data("DateTimePicker").setMinDate(new Date("june 12, 2013")))
   $("#setMaxDate").click( -> $('#datetimepicker3').data("DateTimePicker").setMaxDate(new Date("july 4, 2013")))
   $("#show").click( -> $('#datetimepicker3').data("DateTimePicker").show())
@@ -86,12 +86,12 @@ App.directive('progressbar', [ ->
         $element.progressbar value: $scope.progress
 ])
 
-App.config([ '$routeProvider', ($routeProvider)->
-  $routeProvider
-    .when('/',
-      templateUrl: "trip_details.html",
-      controller: 'TripCtrl'
-    )
+# App.config([ '$routeProvider', ($routeProvider)->
+#   $routeProvider
+#     .when('/',
+#       templateUrl: "trip_details.html",
+#       controller: 'TripCtrl'
+#     )
 
-  console.log "I AM IN App.config"
-])
+#   console.log "I AM IN App.config"
+# ])

@@ -3,13 +3,12 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .tab-content {
-    border-left: 1px solid #ddd;
-    border-right: 1px solid #ddd;
+    border: 1px solid #ddd;
     padding: 10px;
 }
 
 .nav-tabs {
-    margin-bottom: 0;
+    margin-bottom: 0 !important;
 }
 
 .individual-item {
@@ -19,3 +18,7 @@
 
 }
 
+.deadline-title {
+  font-size: 1em;
+  font-weight: bold;
+}
