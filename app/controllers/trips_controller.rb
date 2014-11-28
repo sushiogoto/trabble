@@ -31,14 +31,6 @@ class TripsController < ApplicationController
     @transportations = @trip.transportations
     @accomodations = @trip.accomodations
     @comments = @trip.comments
-    if user_signed_in?
-      @graph = Koala::Facebook::API.new(current_user.facebook_token)
-      @friends = @graph.get_connections("me", "friends")
-      @friends_array = []
-      @friends.each do |friend|
-        @friends_array << User.where(uid: friend['id']).first
-      end
-    end
 
   end
 
