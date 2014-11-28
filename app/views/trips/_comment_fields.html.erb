@@ -1,5 +1,6 @@
 <fieldset>
   <div class="comment">
+
   <% if f.object.content %>
     <%= f.label :content, f.object.content %>
     <% if @user_comments.include? f.object %>
@@ -13,7 +14,7 @@
         <%= link_to "Upvote Comment", like_comment_path(f.object), method: :put, class: "button tiny" %> |
     <% end %>
   <% elsif f.label :content, f.object.content %>
-    <%= f.text_area :content, :cols => "50", :rows => "5" %>
+    <%= f.text_area :content, :cols => "40", :rows => "5" %>
     <%= f.hidden_field :user_id, :value => current_user.id %>
   <% end %>
   <span>Upvote count: <%= f.object.votes_for.up.count %> |</span>

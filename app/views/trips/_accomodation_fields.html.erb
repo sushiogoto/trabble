@@ -12,7 +12,7 @@
               </span>
               <span><button type="button" class="btn btn-default"><%= f.object.votes_for.size %></button></span>
               <span class="input-group-btn" btn-group" role="group"">
-                <%= link_to "-", dislike_accomodation_path(f.object), method: :put, :id => "decreaseButton", class: "btn btn-danger" %>
+                <%= link_to "-", dislike_accomodation_path(f.object), method: :put, :id => "decreaseButton", class: "btn btn-default" %>
               </span>
             </div>
           </div>

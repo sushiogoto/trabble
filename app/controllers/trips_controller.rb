@@ -39,7 +39,6 @@ class TripsController < ApplicationController
         @friends_array << User.where(uid: friend['id']).first
       end
     end
-
   end
 
   def email
