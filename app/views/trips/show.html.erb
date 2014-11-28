@@ -27,57 +27,51 @@
 
       <div role="tabpanel" class="tab-pane active" id="location">
 
-            <%= render 'location_form' %>
-          <% if current_user.id.to_s == @trip.owner %>
-              <div class="btn btn-default" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email Participants to Vote</div>
-              <div class="alert alert-default text-center" ng-if="saved">Emailed!</div>
-            <%= render "deadline_picker", deadline: @deadline_locations %>
-          <% end %>
+        <%= render 'location_form' %>
+        <% if current_user.id.to_s == @trip.owner %>
+          <div class="btn btn-default" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email Participants to Vote</div>
+          <div class="alert alert-default text-center" ng-if="saved">Emailed!</div>
+          <%= render "deadline_picker", deadline: @deadline_locations %>
+        <% end %>
 
       </div>
 
       <div role="tabpanel" class="tab-pane" id="transportation">
 
-          <%= render 'transportation_form' %>
+        <%= render 'transportation_form' %>
         <% if current_user.id.to_s == @trip.owner %>
-            <div class="btn btn-default" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email Participants to Vote</div>
-            <div class="alert alert-default text-center" ng-if="saved">Emailed!</div>
+          <div class="btn btn-default" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email Participants to Vote</div>
+          <div class="alert alert-default text-center" ng-if="saved">Emailed!</div>
           <%= render "deadline_picker", deadline: @deadline_transportations %>
         <% end %>
 
       </div>
+
       <div role="tabpanel" class="tab-pane" id="accomodation">
 
-          <%= render 'accomodation_form' %>
+        <%= render 'accomodation_form' %>
         <% if current_user.id.to_s == @trip.owner %>
-            <div class="btn btn-default" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email Participants to Vote</div>
-            <div class="alert alert-default text-center" ng-if="saved">Emailed!</div>
+          <div class="btn btn-default" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email Participants to Vote</div>
+          <div class="alert alert-default text-center" ng-if="saved">Emailed!</div>
           <%= render "deadline_picker", deadline: @deadline_accomodations %>
         <% end %>
 
       </div>
 
-  </div>
-</div>
+    </div><!-- .tab-content -->
+  </div><!-- role tabpanel -->
 
-    </div>
-    <div class="col-md-4">
-      <div class="panel panel-default">
-        <div class="panel-heading">Discuss</div>
-        <div class="panel-body">
-          <div class="comments">
-            <%= render 'comment_form' %>
-          </div>
-        </div>
+</div><!-- .container.col-md-8 -->
+
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading">Discuss</div>
+    <div class="panel-body">
+      <div class="comments">
+        <%= render 'comment_form' %>
       </div>
     </div>
-
-
-
-    <div class="main-vote">
-    <%= link_to 'Invite participants', new_user_invitation_path(trip_id: @trip.id) %> |
-
-    </div>
-
   </div>
 </div>
+
+
