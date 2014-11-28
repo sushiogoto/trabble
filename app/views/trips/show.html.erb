@@ -1,11 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-
-<div class="header-space">
-  <div class="header title"><%= @trip.name %> Trip</div>
-  <div class="header subtitle"> From <%= @trip.start_date %> to <%= @trip.end_date %></div>
+<div class="jumbotron">
+  <div class="container">
+    <h1><%= @trip.name %> Trip</h1>
+    <p> From <%= @trip.start_date %> to <%= @trip.end_date %></p>
+  </div>
 </div>
 
+<div class="invite">
+  <%= link_to 'Invite participants', new_user_invitation_path(trip_id: @trip.id) %>
+</div>
 
 
 <div class="container col-md-8">
@@ -25,8 +29,8 @@
 
             <%= render 'location_form' %>
           <% if current_user.id.to_s == @trip.owner %>
-              <div class="btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email</div>
-              <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+              <div class="btn btn-default" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email Participants to Vote</div>
+              <div class="alert alert-default text-center" ng-if="saved">Emailed!</div>
             <%= render "deadline_picker", deadline: @deadline_locations %>
           <% end %>
 
@@ -36,8 +40,8 @@
 
           <%= render 'transportation_form' %>
         <% if current_user.id.to_s == @trip.owner %>
-            <div class="btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email</div>
-            <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+            <div class="btn btn-default" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email Participants to Vote</div>
+            <div class="alert alert-default text-center" ng-if="saved">Emailed!</div>
           <%= render "deadline_picker", deadline: @deadline_transportations %>
         <% end %>
 
@@ -46,8 +50,8 @@
 
           <%= render 'accomodation_form' %>
         <% if current_user.id.to_s == @trip.owner %>
-            <div class="btn btn-success" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email</div>
-            <div class="alert alert-success text-center" ng-if="saved">Emailed!</div>
+            <div class="btn btn-default" ng-click="emailShot(<%= @trip.id %>, 'location')" ng-if="!saved">Email Participants to Vote</div>
+            <div class="alert alert-default text-center" ng-if="saved">Emailed!</div>
           <%= render "deadline_picker", deadline: @deadline_accomodations %>
         <% end %>
 
@@ -58,15 +62,16 @@
 
     </div>
     <div class="col-md-4">
-      <div class="panel-heading">
-        <h3> Discuss </h3>
-      </div>
-    <div class="panel-body">
-      <div class="comments">
-        <%= render 'comment_form' %>
+      <div class="panel panel-default">
+        <div class="panel-heading">Discuss</div>
+        <div class="panel-body">
+          <div class="comments">
+            <%= render 'comment_form' %>
+          </div>
+        </div>
       </div>
     </div>
-    </div>
+
 
     <% if @friends_array[0] != nil %>
      <div class="col-md-2 sidebar-right">
@@ -84,8 +89,6 @@
     <div class="main-vote">
     <%= link_to 'Invite participants', new_user_invitation_path(trip_id: @trip.id) %> |
 
-    <%= link_to 'Edit', edit_trip_path(@trip) %> |
-    <%= link_to 'Back', trips_path %>
     </div>
 
   </div>
