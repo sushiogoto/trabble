@@ -5,11 +5,6 @@ class TripsController < ApplicationController
 
   def data
     user_trips = current_user.trips
-    # trip_transportations = user_trips.map {|trip| trip.locations }
-    # trip_accomodations = user_trips.pluck(:accomodation)
-    # trip_accomodations = user_trips.pluck(:comment)
-# COME BACK TO THIS MAN
-    # lunch_dates = user_lunches.pluck(:lunch_date)
     render json: {trips: user_trips, user: current_user}
   end
 
@@ -25,20 +20,11 @@ class TripsController < ApplicationController
     @deadline_locations = @trip.deadline_locations
     @deadline_accomodations = @trip.deadline_accomodations
     @deadline_transportations = @trip.deadline_transportations
-    # if deadline_locations < Time.now
 
     @locations = @trip.locations
     @transportations = @trip.transportations
     @accomodations = @trip.accomodations
     @comments = @trip.comments
-    if user_signed_in?
-      @graph = Koala::Facebook::API.new(current_user.facebook_token)
-      @friends = @graph.get_connections("me", "friends")
-      @friends_array = []
-      @friends.each do |friend|
-        @friends_array << User.where(uid: friend['id']).first
-      end
-    end
 
   end
 
@@ -71,8 +57,7 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.owner = current_user
-    # trip_params = deadline_params
-    # Date.strptime(order_params[:scheduled_date], '%m/%d/%Y %I:%M %p')
+
     respond_to do |format|
       if @trip.save
         current_user.trip_users.create(user_id: current_user, trip_id: @trip.id)
