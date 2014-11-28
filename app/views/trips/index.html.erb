@@ -1,18 +1,26 @@
-<div role="tabpanel">
-  <!-- Nav tabs -->
-    <ul class="nav nav-tabs" role="tablist">
-      <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
-      <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Profile</a></li>
-      <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
-      <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
-    </ul>
+<div class="trips" ng-controller="TripCtrl as trip">
 
-    <!-- Tab panes -->
-    <div class="tab-content">
-      <div role="tabpanel" class="tab-pane active" id="home">...</div>
-      <div role="tabpanel" class="tab-pane" id="profile">...</div>
-      <div role="tabpanel" class="tab-pane" id="messages">...</div>
-      <div role="tabpanel" class="tab-pane" id="settings">...</div>
+    <!-- Sidebar -->
+    <div id="sidebar-wrapper">
+      <div class="sidebar-nav user_profile">
+        <%= image_tag current_user.largeimage %><br />
+        <%= current_user.name %>
+      </div>
+      <div class="sidebar-nav trips_list">
+        <p>Your Trips</p>
+        <div class="row trips" ng-repeat="trip in trips">
+          <a ng-href="/trips/{{ trip.id }}" class="col-md-3">{{ trip.name }} </a>
+        </div>
+        <%= link_to 'New Trip', new_trip_path %>
+      </div>
     </div>
+    <!-- /#sidebar-wrapper -->
 
-  </div>
+  <% if current_user.trips.count == 0 %>
+    <h1 class="text-center">You have no trip planned yet, let's get tempted:</h1>
+    <%= link_to 'Plan a New Trip with your Friends Now!', new_trip_path, class: "btn btn-lg btn-default" %><div>
+  <% else %>
+    <h1 class="text-center">Enjoy the trip to come!</h1>
+  <% end %>
+
+</div>

@@ -47,6 +47,7 @@ Rails.application.routes.draw do
       put "like", to: "trips#upvote"
       put "dislike", to: "trips#downvote"
     end
+    get 'trips', on: :collection
   end
 
   scope :api do
